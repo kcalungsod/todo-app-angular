@@ -1,18 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ListMoviesComponent } from './components/list-movies/list-movies.component';
+import { ListMoviesModule } from './components/list-movies/list-movies.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ListMoviesComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ListMoviesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
