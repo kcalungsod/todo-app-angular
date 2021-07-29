@@ -6,7 +6,7 @@ import { Movie } from '../models/movie';
 })
 export class PhasePipe implements PipeTransform {
   transform(movies: Movie[], phase?: string): Movie[] {
-    if (movies && phase) {
+    if (movies && phase && phase !== 'All') {
       return movies.filter(movie => movie.phase === phase);
     }
     return movies ? movies : [];
