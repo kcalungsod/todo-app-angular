@@ -1,0 +1,7 @@
+{
+  "todos": [
+    {"id": 1, "name": "Sample todo 1", "description": "Sample todo 1 description", "dueDate": "2021-8-30", "isCompleted": false },
+    {"id": 2, "name": "Sample todo 2", "description": "Sample todo 2 description", "dueDate": "2021-8-10", "isCompleted": false },
+    {"id": 3, "name": "Sample todo 3", "description": "Sample todo 3 description", "dueDate": "2021-8-5", "isCompleted": false }
+  ]
+}
