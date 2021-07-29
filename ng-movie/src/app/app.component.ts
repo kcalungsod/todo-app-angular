@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ListMoviesComponent } from './components/list-movies/list-movies.component';
 import { Movie } from './models/movie';
+import { MoviesApiService } from './services/movies-api.service';
 
 @Component({
   selector: 'app-root',
@@ -39,9 +40,22 @@ export class AppComponent implements AfterViewInit {
   showList: boolean = true;
 
   title = 'ng-movie';
+  
+  constructor(
+    protected moviesApiService: MoviesApiService
+  ) {
+  }
 
   onViewMovie(movie: Movie): void {
     this.selectedMovie = movie;
+  }
+
+  ngOnInit(): void {
+    this.moviesApiService.getMovies()
+      .subscribe((movies) => {
+        this.sourceMovies = movies;
+        console.log(`Source Movies: ${this.sourceMovies.length} loaded`);
+      });
   }
 
   ngAfterViewInit(): void {

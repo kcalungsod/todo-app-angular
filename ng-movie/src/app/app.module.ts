@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListMoviesModule } from './components/list-movies/list-movies.module';
+import { MOVIES_URL } from './tokens/token';
+import { environment } from '../environments/environment';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -11,9 +14,13 @@ import { ListMoviesModule } from './components/list-movies/list-movies.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ListMoviesModule
+    ListMoviesModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [{
+    provide: MOVIES_URL,
+    useValue: environment.url
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
