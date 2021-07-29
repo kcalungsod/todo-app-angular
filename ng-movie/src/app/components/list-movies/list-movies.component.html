@@ -6,16 +6,24 @@
   <ng-template #lessMovies>
     <p>Few movies only</p>
   </ng-template>
-  <button (click)="selectedPhase = 'All'">
+  <button (click)="selectedPhase = 'All'"
+          [appFilterPhase]="selectedPhase"
+          [phase]="'All'">
     All
   </button>
-  <button (click)="selectedPhase = 'Phase One'">
+  <button (click)="selectedPhase = 'Phase One'"
+          [appFilterPhase]="selectedPhase"
+          [phase]="'Phase One'">
     Phase One
   </button>
-  <button (click)="selectedPhase = 'Phase Two'">
+  <button (click)="selectedPhase = 'Phase Two'"
+          [appFilterPhase]="selectedPhase"
+          [phase]="'Phase Two'">
     Phase Two
   </button>
-  <button (click)="selectedPhase = 'Phase Three'">
+  <button (click)="selectedPhase = 'Phase Three'"
+          [appFilterPhase]="selectedPhase"
+          [phase]="'Phase Three'">
     Phase Three
   </button>
   <table>
@@ -30,38 +38,42 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let movie of movies | phase:selectedPhase">
-        <td>
-          {{ movie.title }}
-        </td>
-        <td>
-          {{ movie.releaseDate | date:'dd-MMM-yyyy' }}
-        </td>
-        <td [class]="{
-            'phase' : true,
-            'phase-one': movie.phase === 'Phase One',
-            'phase-two': movie.phase === 'Phase Two',
-            'phase-three': movie.phase === 'Phase Three'
-          }">{{ movie.phase }}
-        </td>
-        <td [class.pg-13]="movie.ratingName  === 'PG-13'">
-          {{ movie.ratingName }}
-        </td>
-        <td [style.width.px]="150">
-          {{ movie.budget | currency }}
-        </td>
-        <td
-          [style]="{
-            background: 'lightgrey',
-            width: '150px'
-          }"
-        >
-          <button (click)="viewMovie.emit(movie)"
-                  [attr.aria-label]="'View ' + movie.title">
-            View
-          </button>
-        </td>
-      </tr>
+      <ng-container *ngFor="let movie of movies | phase:selectedPhase">
+        <tr *appHideMovie="movie?.hide">
+          <td>
+            {{ movie.title }}
+          </td>
+          <td>
+            {{ movie.releaseDate | date:'dd-MMM-yyyy' }}
+          </td>
+          <td [class]="{
+              'phase' : true,
+              'phase-one': movie.phase === 'Phase One',
+              'phase-two': movie.phase === 'Phase Two',
+              'phase-three': movie.phase === 'Phase Three'
+            }">{{ movie.phase }}
+          </td>
+          <td [class.pg-13]="movie.ratingName  === 'PG-13'">
+            {{ movie.ratingName }}
+          </td>
+          <td [style.width.px]="150">
+            {{ movie.budget | currency }}
+          </td>
+          <td [style]="{
+              background: 'lightgrey',
+              width: '150px'
+            }">
+            <button (click)="viewMovie.emit(movie)"
+                    [attr.aria-label]="'View ' + movie.title">
+              View
+            </button>
+            <button (click)="movie.hide = true"
+                    [attr.aria-label]="'Hide ' + movie.title">
+              Hide
+            </button>
+          </td>
+        </tr>
+      </ng-container>
     </tbody>
   </table>
 </div>

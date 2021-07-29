@@ -16,4 +16,6 @@ export interface Movie {
   gross: string;
   timeStamp: string;
   edition?: string;
+  hide?: boolean;
 }
+
