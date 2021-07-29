@@ -23,6 +23,9 @@
         <td>{{ movie.phase }}</td>
         <td>{{ movie.budget | currency }}</td>
         <td> 
+            <button (click)="viewMovie.emit(movie)">
+              View
+            </button>
         </td>
       </tr>
     </tbody>

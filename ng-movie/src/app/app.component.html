@@ -1,2 +1,10 @@
-<app-list-movies>
+<app-list-movies
+  [movies]="sourceMovies"
+  (viewMovie)="onViewMovie($event)"
+>
 </app-list-movies>
+<hr>
+<div>
+  Selected Movie:
+  <div>{{ selectedMovie | json }}</div>
+</div>
