@@ -55,7 +55,7 @@
              [(ngModel)]="movie.budget"
              min=0.01
              required
-             appUnsigned
+             unsigned
              #price="ngModel">
       <div class="errors"
            *ngIf="price?.touched && !price?.valid">
