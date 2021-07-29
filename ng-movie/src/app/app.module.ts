@@ -6,6 +6,7 @@ import { ListMoviesModule } from './components/list-movies/list-movies.module';
 import { MOVIES_URL } from './tokens/token';
 import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
+import { CreateMovieModule } from './components/create-movie/create-movie.module';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     ListMoviesModule,
+    CreateMovieModule,
     HttpClientModule
   ],
   providers: [{

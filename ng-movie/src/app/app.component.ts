@@ -35,12 +35,13 @@ export class AppComponent implements AfterViewInit {
     { id: 19, title: "Avengers: Infinity War", phase: "Phase Three", categoryName: "Science Fiction", releaseYear: 2018, runningTime: 0, ratingName: "PG-13", discFormatName: "Blu-ray", numberDiscs: 1, viewingFormatName: "Widescreen", aspectRatioName: "2.39:1", status: 1, releaseDate: "May 4, 2018", budget: "300000000", gross: "678815482", timeStamp: "2018-01-09" },
     { id: 20, title: "Ant-Man and the Wasp", phase: "Phase Three", categoryName: "Science Fiction", releaseYear: 2018, runningTime: 0, ratingName: "PG-13", discFormatName: "Blu-ray", numberDiscs: 1, viewingFormatName: "Widescreen", aspectRatioName: "2.39:1", status: 1, releaseDate: "July 6, 2018", budget: "130000000", gross: "216648740", timeStamp: "2018-01-09" }];
 
-  selectedMovie: Movie | undefined ;
+  selectedMovie: Movie | undefined;
 
   showList: boolean = true;
+  showCreate: boolean = false;
 
   title = 'ng-movie';
-  
+
   constructor(
     protected moviesApiService: MoviesApiService
   ) {
@@ -50,12 +51,22 @@ export class AppComponent implements AfterViewInit {
     this.selectedMovie = movie;
   }
 
+  onMovieCreated(movie: Movie) {
+    this.sourceMovies = [...this.sourceMovies, movie];
+    this.toggleListOrCreate();
+  }
+
   ngOnInit(): void {
     this.moviesApiService.getMovies()
       .subscribe((movies) => {
         this.sourceMovies = movies;
         console.log(`Source Movies: ${this.sourceMovies.length} loaded`);
       });
+  }
+
+  toggleListOrCreate(): void {
+    this.showList = !this.showList;
+    this.showCreate = !this.showList;
   }
 
   ngAfterViewInit(): void {

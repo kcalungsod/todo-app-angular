@@ -1,11 +1,14 @@
+<app-create-movie *ngIf="showCreate"
+                  (movieCreated)="onMovieCreated($event)">
+</app-create-movie>
+
 <app-list-movies *ngIf="showList"
                  [movies]="sourceMovies"
                  (viewMovie)="onViewMovie($event)">
 </app-list-movies>
 <hr>
-<b>Options: </b>
-<button (click)="showList = !showList">
-  {{ showList ? 'Hide List' : 'Show List' }}
+<button (click)="toggleListOrCreate()">
+  {{ showCreate ? 'Cancel New Movie' : 'Create New Movie' }}
 </button>
 <hr>
 <div *ngIf="selectedMovie">
