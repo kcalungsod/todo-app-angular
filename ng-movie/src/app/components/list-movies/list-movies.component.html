@@ -6,6 +6,18 @@
   <ng-template #lessMovies>
     <p>Few movies only</p>
   </ng-template>
+  <button (click)="selectedPhase = undefined">
+    All
+  </button>
+  <button (click)="selectedPhase = 'Phase One'">
+    Phase One
+  </button>
+  <button (click)="selectedPhase = 'Phase Two'">
+    Phase Two
+  </button>
+  <button (click)="selectedPhase = 'Phase Three'">
+    Phase Three
+  </button>
   <table>
     <thead>
       <tr>
@@ -18,7 +30,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let movie of movies">
+      <tr *ngFor="let movie of movies | phase:selectedPhase">
         <td>
           {{ movie.title }}
         </td>

@@ -8,6 +8,8 @@ import { Movie } from 'src/app/models/movie';
 })
 export class ListMoviesComponent implements OnInit, OnDestroy {
 
+  selectedPhase?: string;
+
   @Input()
   movies: Movie[] = [];
 
