@@ -1,10 +1,14 @@
-<app-list-movies
-  [movies]="sourceMovies"
-  (viewMovie)="onViewMovie($event)"
->
+<app-list-movies *ngIf="showList"
+                 [movies]="sourceMovies"
+                 (viewMovie)="onViewMovie($event)">
 </app-list-movies>
 <hr>
-<div>
-  Selected Movie:
-  <div>{{ selectedMovie | json }}</div>
+<b>Options: </b>
+<button (click)="showList = !showList">
+  {{ showList ? 'Hide List' : 'Show List' }}
+</button>
+<hr>
+<div *ngIf="selectedMovie">
+  <b>Selected Movie:</b>
+  {{ selectedMovie | json }}
 </div>

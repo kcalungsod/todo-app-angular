@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Movie } from 'src/app/models/movie';
 
 @Component({
@@ -6,7 +6,7 @@ import { Movie } from 'src/app/models/movie';
   templateUrl: './list-movies.component.html',
   styleUrls: ['./list-movies.component.scss']
 })
-export class ListMoviesComponent implements OnInit {
+export class ListMoviesComponent implements OnInit, OnDestroy {
 
   @Input()
   movies: Movie[] = [];
@@ -17,6 +17,12 @@ export class ListMoviesComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log(`ListMoviesComponent - ngOnInit - ${this.movies ? this.movies.length : 0} movies`);
+  }
+
+  ngOnDestroy(): void {
+    this.movies = [];
+    console.log(`ListMoviesComponent - ngOnDestroy - ${this.movies ? this.movies.length : 0} movies`);
   }
 
 }

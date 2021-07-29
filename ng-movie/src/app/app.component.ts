@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ListMoviesComponent } from './components/list-movies/list-movies.component';
 import { Movie } from './models/movie';
 
 @Component({
@@ -6,7 +7,10 @@ import { Movie } from './models/movie';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
+
+  @ViewChild(ListMoviesComponent)
+  childComponent!: ListMoviesComponent;
 
   sourceMovies: Movie[] = [
     { id: 1, title: "Iron Man", phase: "Phase One", categoryName: "Action", releaseYear: 2015, runningTime: 126, ratingName: "PG-13", discFormatName: "Blu-ray", numberDiscs: 1, viewingFormatName: "Widescreen", aspectRatioName: "2.35:1", status: 1, releaseDate: "May 2, 2008", budget: "140000000", gross: "318298180", timeStamp: "2015-05-03" },
@@ -32,9 +36,16 @@ export class AppComponent {
 
   selectedMovie: Movie | undefined ;
 
+  showList: boolean = true;
+
   title = 'ng-movie';
 
   onViewMovie(movie: Movie): void {
     this.selectedMovie = movie;
   }
+
+  ngAfterViewInit(): void {
+    console.log(`AppComponent - ngAfterViewInit - ${this.childComponent.movies.length} movies`);
+  }
+
 }
