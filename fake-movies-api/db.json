@@ -362,43 +362,6 @@
       "budget": "130000000",
       "gross": "216648740",
       "timeStamp": "2018-01-09"
-    },
-    {
-      "title": "Avengers: Endgame",
-      "phase": "Phase Three",
-      "releaseDate": "2019-05-04",
-      "budget": 123121231,
-      "id": 21,
-      "actors": []
-    },
-    {
-      "title": "Spider-man: Far from home",
-      "phase": "Phase Three",
-      "releaseDate": "2020-07-04",
-      "budget": 123131232,
-      "ratingName": "PG-13",
-      "id": 22
-    },
-    {
-      "title": "Black Widow",
-      "phase": "Phase Four",
-      "releaseDate": "2021-07-26",
-      "budget": 234234234,
-      "ratingName": "PG-13",
-      "id": 23
-    },
-    {
-      "title": "Spider-man: No way home",
-      "phase": "Phase Four",
-      "releaseDate": "2021-06-30",
-      "id": 24
-    },
-    {
-      "title": "Black Widow",
-      "phase": "Phase Four",
-      "releaseDate": "2021-06-10",
-      "budget": "2344234234",
-      "id": 25
     }
   ]
 }
