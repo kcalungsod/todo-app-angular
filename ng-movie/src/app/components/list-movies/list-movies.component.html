@@ -12,20 +12,42 @@
         <td>Title</td>
         <td>Release Date</td>
         <td>Phase</td>
-        <td>Budget</td>
+        <td>Rating</td>
+        <td [style.width]="'150px'">Budget</td>
         <td></td>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let movie of movies">
-        <td>{{ movie.title }}</td>
-        <td>{{ movie.releaseDate | date:'dd-MMM-yyyy' }}</td>
-        <td>{{ movie.phase }}</td>
-        <td>{{ movie.budget | currency }}</td>
-        <td> 
-            <button (click)="viewMovie.emit(movie)">
-              View
-            </button>
+        <td>
+          {{ movie.title }}
+        </td>
+        <td>
+          {{ movie.releaseDate | date:'dd-MMM-yyyy' }}
+        </td>
+        <td [class]="{
+            'phase' : true,
+            'phase-one': movie.phase === 'Phase One',
+            'phase-two': movie.phase === 'Phase Two',
+            'phase-three': movie.phase === 'Phase Three'
+          }">{{ movie.phase }}
+        </td>
+        <td [class.pg-13]="movie.ratingName  === 'PG-13'">
+          {{ movie.ratingName }}
+        </td>
+        <td [style.width.px]="150">
+          {{ movie.budget | currency }}
+        </td>
+        <td
+          [style]="{
+            background: 'lightgrey',
+            width: '150px'
+          }"
+        >
+          <button (click)="viewMovie.emit(movie)"
+                  [attr.aria-label]="'View ' + movie.title">
+            View
+          </button>
         </td>
       </tr>
     </tbody>
