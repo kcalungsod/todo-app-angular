@@ -16,7 +16,10 @@ export interface Movie {
   gross?: string;
   timeStamp?: string;
   edition?: string;
-  actors?: string[]
   hide?: boolean;
+  castAndCrew?: {
+    actors?: string[],
+    producers?: string[]
+  }
 }
 

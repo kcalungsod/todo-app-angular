@@ -36,9 +36,11 @@ export class AppComponent implements AfterViewInit {
     { id: 20, title: "Ant-Man and the Wasp", phase: "Phase Three", categoryName: "Science Fiction", releaseYear: 2018, runningTime: 0, ratingName: "PG-13", discFormatName: "Blu-ray", numberDiscs: 1, viewingFormatName: "Widescreen", aspectRatioName: "2.39:1", status: 1, releaseDate: "July 6, 2018", budget: "130000000", gross: "216648740", timeStamp: "2018-01-09" }];
 
   selectedMovie: Movie | undefined;
+  editMovie: Movie | undefined;
 
   showList: boolean = true;
   showCreate: boolean = false;
+  showEdit: boolean = false;
 
   title = 'ng-movie';
 
@@ -51,9 +53,24 @@ export class AppComponent implements AfterViewInit {
     this.selectedMovie = movie;
   }
 
+  onEditMovie(movie: Movie): void {
+    this.editMovie = movie;
+    this.showEditComponent();
+  }
+
   onMovieCreated(movie: Movie) {
     this.sourceMovies = [...this.sourceMovies, movie];
-    this.toggleListOrCreate();
+    this.hideCreateComponent();
+  }
+
+  
+  onMovieUpdated(newMovie: Movie) {
+    const oldMovie = this.sourceMovies.find(m => m.id === newMovie.id);
+    if (oldMovie) {
+      const index = this.sourceMovies.indexOf(oldMovie);
+      this.sourceMovies[index] = newMovie;
+    }
+    this.hideEditComponent();
   }
 
   ngOnInit(): void {
@@ -64,9 +81,28 @@ export class AppComponent implements AfterViewInit {
       });
   }
 
-  toggleListOrCreate(): void {
-    this.showList = !this.showList;
-    this.showCreate = !this.showList;
+  showCreateComponent(): void {
+    this.showCreate = true;
+    this.showList = false;
+    this.showEdit = false;
+  }
+
+  showEditComponent(): void {
+    this.showEdit = true;
+    this.showCreate = false;
+    this.showList = false;
+  }
+
+  hideCreateComponent(): void {
+    this.showList = true;
+    this.showCreate = false;
+    this.showEdit = false;
+  }
+
+  hideEditComponent(): void {
+    this.showList = true;
+    this.showCreate = false;
+    this.showEdit = false;
   }
 
   ngAfterViewInit(): void {

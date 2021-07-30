@@ -1,0 +1,80 @@
+<div class="container">
+  <h2>Edit</h2>
+  <form [formGroup]="formGroup"
+        (ngSubmit)="onSubmit()">
+    <div class="form-field">
+      <label for="title">Title</label>
+      <input id="title"
+             name="title"
+             class="form-control"
+             type="text"
+             formControlName="title">
+    </div>
+    <div class="form-field">
+      <label for="releaseDate">Release Date</label>
+      <input id="releaseDate"
+             name="releaseDate"
+             class="form-control"
+             type="text"
+             formControlName="releaseDate">
+    </div>
+    <div class="form-field">
+      <label for="genre">Phase</label>
+      <input id="phase"
+             name="phase"
+             class="form-control"
+             type="text"
+             formControlName="phase">
+    </div>
+    <div class="form-field">
+      <label for="budget">Budget</label>
+      <input id="budget"
+             name="budget"
+             class="form-control"
+             type="number"
+             formControlName="budget">
+      <div class="errors"
+           *ngIf="formGroup.get('budget')?.touched && !formGroup.get('budget')?.valid">
+        <span *ngIf="formGroup.get('budget')?.errors?.required">Budget is required</span>
+        <span *ngIf="formGroup.get('budget')?.errors?.unsigned">Budget cannot be negative</span>
+      </div>
+    </div>
+    <div class="form-field-array"
+         [formGroup]="castAndCrewFormGroup">
+      <div class="add-item">
+        <button type="button"
+                (click)="addActor()">+ Actor</button>
+      </div>
+      <ng-container formArrayName="actors">
+        <div class="form-field"
+             *ngFor="let control of actors.controls;let i=index">
+          <label for="actor">Actor {{ i + 1 }} </label>
+          <input id="actor"
+                 class="form-control"
+                 [formControlName]="i">
+        </div>
+      </ng-container>
+    </div>
+    <div class="form-field-array"
+         [formGroup]="castAndCrewFormGroup">
+      <div class="add-item">
+        <button type="button"
+                (click)="addProducer()">+ Producer</button>
+      </div>
+      <ng-container formArrayName="producers">
+        <div class="form-field"
+             *ngFor="let control of producers.controls;let i=index">
+          <label for="producer">Producer {{ i + 1 }}</label>
+          <input id="producer"
+                 class="form-control"
+                 [formControlName]="i">
+        </div>
+      </ng-container>
+    </div>
+    <div class="form-buttom">
+      <button type="submit"
+              class="btn btn-primary">Update</button>
+    </div>
+  </form>
+  <br>
+</div>

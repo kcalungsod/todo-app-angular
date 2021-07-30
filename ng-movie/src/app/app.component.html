@@ -2,16 +2,31 @@
                   (movieCreated)="onMovieCreated($event)">
 </app-create-movie>
 
+<app-edit-movie *ngIf="showEdit && editMovie"
+                (movieUpdated)="onMovieUpdated($event)"
+                [movie]="editMovie">
+</app-edit-movie>
+
 <app-list-movies *ngIf="showList"
                  [movies]="sourceMovies"
-                 (viewMovie)="onViewMovie($event)">
+                 (viewMovie)="onViewMovie($event)"
+                 (editMovie)="onEditMovie($event)">
 </app-list-movies>
 <hr>
-<button (click)="toggleListOrCreate()">
-  {{ showCreate ? 'Cancel New Movie' : 'Create New Movie' }}
+<button *ngIf="!showCreate && !showEdit"
+        (click)="showCreateComponent()">
+  Create New Movie
+</button>
+<button (click)="hideCreateComponent()"
+        *ngIf="showCreate && !showEdit">
+  Cancel New Movie
+</button>
+<button (click)="hideEditComponent()"
+        *ngIf="showEdit && !showCreate">
+  Cancel Edit Movie
 </button>
 <hr>
-<div *ngIf="selectedMovie">
+<div *ngIf="selectedMovie && !showCreate && !showEdit">
   <b>Selected Movie:</b>
   {{ selectedMovie | json }}
 </div>

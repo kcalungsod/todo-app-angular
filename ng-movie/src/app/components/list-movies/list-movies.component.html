@@ -71,6 +71,10 @@
                     [attr.aria-label]="'Hide ' + movie.title">
               Hide
             </button>
+            <button (click)="editMovie.emit(movie)"
+                    [attr.aria-label]="'Edit ' + movie.title">
+              Edit
+            </button>
           </td>
         </tr>
       </ng-container>

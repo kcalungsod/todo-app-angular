@@ -16,6 +16,9 @@ export class ListMoviesComponent implements OnInit, OnDestroy {
   @Output()
   viewMovie: EventEmitter<Movie> = new EventEmitter<Movie>();
 
+  @Output()
+  editMovie: EventEmitter<Movie> = new EventEmitter<Movie>();
+
   constructor() { }
 
   ngOnInit(): void {

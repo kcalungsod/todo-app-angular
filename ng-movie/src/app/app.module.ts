@@ -7,6 +7,7 @@ import { MOVIES_URL } from './tokens/token';
 import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { CreateMovieModule } from './components/create-movie/create-movie.module';
+import { EditMovieModule } from './components/edit-movie/edit-movie.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { CreateMovieModule } from './components/create-movie/create-movie.module
     AppRoutingModule,
     ListMoviesModule,
     CreateMovieModule,
+    EditMovieModule,
     HttpClientModule
   ],
   providers: [{
