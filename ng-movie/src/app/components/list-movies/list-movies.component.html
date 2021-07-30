@@ -1,3 +1,6 @@
+<a [routerLink]="['/create']">
+  Create Movie
+</a>
 <div class="container">
   <h2>Index</h2>
   <p *ngIf="movies.length > 3 else lessMovies">
@@ -80,4 +83,9 @@
       </ng-container>
     </tbody>
   </table>
+</div>
+<hr>
+<div *ngIf="selectedMovie">
+  <b>Selected Movie:</b>
+  {{ selectedMovie | json }}
 </div>

@@ -106,7 +106,9 @@ export class AppComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    console.log(`AppComponent - ngAfterViewInit - ${this.childComponent.movies.length} movies`);
+    if (this.childComponent) {
+      console.log(`AppComponent - ngAfterViewInit - ${this.childComponent.movies.length} movies`);
+    }
   }
 
 }

@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators, FormArray, FormGroup, ValidatorFn, AbstractControl, FormControl } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { take } from 'rxjs/operators';
 import { Movie } from 'src/app/models/movie';
 import { MoviesApiService } from 'src/app/services/movies-api.service';
 
@@ -44,8 +46,17 @@ export class EditMovieComponent {
   }
 
   constructor(
-    protected moviesApiService: MoviesApiService
+    protected moviesApiService: MoviesApiService,
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
+
+  async ngOnInit(): Promise<void> {
+    const params = await this.route.params.pipe(take(1)).toPromise();
+    if(params['id']) {
+      this.movie = await this.moviesApiService.getMovie(params['id']).toPromise();
+    }
+  }
 
   addActor() {
     this.actors.push(new FormControl(null));
@@ -94,6 +105,7 @@ export class EditMovieComponent {
       await this.moviesApiService.editMovie(updatedMovie).toPromise();
       this.movieUpdated.emit(updatedMovie);
       this.formGroup.reset();
+      this.router.navigate(['/']);
     } else {
       this.formGroup.markAllAsTouched();
     }

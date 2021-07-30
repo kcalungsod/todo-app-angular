@@ -1,4 +1,4 @@
-<app-create-movie *ngIf="showCreate"
+<!-- <app-create-movie *ngIf="showCreate"
                   (movieCreated)="onMovieCreated($event)">
 </app-create-movie>
 
@@ -29,4 +29,8 @@
 <div *ngIf="selectedMovie && !showCreate && !showEdit">
   <b>Selected Movie:</b>
   {{ selectedMovie | json }}
-</div>
+</div> -->
+
+
+<router-outlet>
+</router-outlet>
