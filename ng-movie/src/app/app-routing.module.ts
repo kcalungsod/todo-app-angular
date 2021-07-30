@@ -24,6 +24,10 @@ const routes: Routes = [
         component: ListMoviesComponent
       },
       {
+        path: 'edit',
+        component: EditMovieComponent
+      },
+      {
         path: '',
         pathMatch: 'full',
         redirectTo: 'list'

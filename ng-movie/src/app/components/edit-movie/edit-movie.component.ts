@@ -52,9 +52,17 @@ export class EditMovieComponent {
   ) { }
 
   async ngOnInit(): Promise<void> {
+    // Route Params or Matrix URL
     const params = await this.route.params.pipe(take(1)).toPromise();
-    if(params['id']) {
+    if (params['id']) {
+      console.log('Routed using Route Params');
       this.movie = await this.moviesApiService.getMovie(params['id']).toPromise();
+    }
+    // Query String
+    const queryParams = await this.route.queryParams.pipe(take(1)).toPromise();
+    if (queryParams['id']) {
+      console.log('Routed using query Params');
+      this.movie = await this.moviesApiService.getMovie(queryParams['id']).toPromise();
     }
   }
 
