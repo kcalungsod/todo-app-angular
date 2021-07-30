@@ -32,7 +32,7 @@ export class ListMoviesComponent implements OnInit, OnDestroy {
     this.fetchMovies();
     console.log(`ListMoviesComponent - ngOnInit - ${this.movies ? this.movies.length : 0} movies`);
     this.editMovie.subscribe(m => {
-      this.router.navigate(['/edit', m.id]);
+      this.router.navigate(['/movies/edit', m.id]);
     })
     this.viewMovie.subscribe(m => {
       this.selectedMovie = m;

@@ -105,7 +105,7 @@ export class EditMovieComponent {
       await this.moviesApiService.editMovie(updatedMovie).toPromise();
       this.movieUpdated.emit(updatedMovie);
       this.formGroup.reset();
-      this.router.navigate(['/']);
+      this.router.navigate(['/movies/list']);
     } else {
       this.formGroup.markAllAsTouched();
     }

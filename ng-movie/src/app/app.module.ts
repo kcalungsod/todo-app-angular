@@ -8,6 +8,7 @@ import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { CreateMovieModule } from './components/create-movie/create-movie.module';
 import { EditMovieModule } from './components/edit-movie/edit-movie.module';
+import { MovieLayoutModule } from './components/movie-layout/movie-layout.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { EditMovieModule } from './components/edit-movie/edit-movie.module';
     ListMoviesModule,
     CreateMovieModule,
     EditMovieModule,
-    HttpClientModule
+    HttpClientModule,
+    MovieLayoutModule
   ],
   providers: [{
     provide: MOVIES_URL,

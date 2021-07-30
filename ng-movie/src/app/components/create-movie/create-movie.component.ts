@@ -29,7 +29,7 @@ export class CreateMovieComponent {
       const newMovie = await this.moviesApiService.addMovie(this.movie).toPromise();
       this.form.resetForm();
       this.movieCreated.emit(newMovie);;
-      this.router.navigate(['/']);
+      this.router.navigate(['/movies/list']);
     }
   }
 
