@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CreateMovieModule } from './components/create-movie/create-movie.module';
 import { EditMovieModule } from './components/edit-movie/edit-movie.module';
 import { MovieLayoutModule } from './components/movie-layout/movie-layout.module';
+import { PageNotFoundModule } from './components/page-not-found/page-not-found.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MovieLayoutModule } from './components/movie-layout/movie-layout.module
     CreateMovieModule,
     EditMovieModule,
     HttpClientModule,
-    MovieLayoutModule
+    MovieLayoutModule,
+    PageNotFoundModule
   ],
   providers: [{
     provide: MOVIES_URL,

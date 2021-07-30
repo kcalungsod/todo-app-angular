@@ -4,6 +4,7 @@ import { CreateMovieComponent } from './components/create-movie/create-movie.com
 import { EditMovieComponent } from './components/edit-movie/edit-movie.component';
 import { ListMoviesComponent } from './components/list-movies/list-movies.component';
 import { MovieLayoutComponent } from './components/movie-layout/movie-layout.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     redirectTo: 'movies'
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
   }
 ];
 
