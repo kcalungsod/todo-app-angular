@@ -18,9 +18,6 @@ import { PageNotFoundModule } from './components/page-not-found/page-not-found.m
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ListMoviesModule,
-    CreateMovieModule,
-    EditMovieModule,
     HttpClientModule,
     MovieLayoutModule,
     PageNotFoundModule
