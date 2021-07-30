@@ -3,6 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { CreateMovieComponent } from './../create-movie/create-movie.component';
 import { EditMovieComponent } from './../edit-movie/edit-movie.component';
 import { ListMoviesComponent } from './../list-movies/list-movies.component';
+import { CanEditGuard } from '../../guards/can-edit.guard';
+import { UnsavedEditGuard } from '../../guards/unsaved-edit.guard';
+import { LoadMoviesResolver } from '../../guards/load-movies.resolver';
 
 const routes: Routes = [
   {
@@ -11,15 +14,22 @@ const routes: Routes = [
   },
   {
     path: 'edit/:id',
-    component: EditMovieComponent
+    component: EditMovieComponent,
+    canActivate: [CanEditGuard],
+    canDeactivate: [UnsavedEditGuard]
   },
   {
     path: 'edit',
-    component: EditMovieComponent
+    component: EditMovieComponent,
+    canActivate: [CanEditGuard],
+    canDeactivate: [UnsavedEditGuard]
   },
   {
     path: 'list',
-    component: ListMoviesComponent
+    component: ListMoviesComponent,
+    resolve: {
+      movies: LoadMoviesResolver
+    }
   },
   {
     path: '',
