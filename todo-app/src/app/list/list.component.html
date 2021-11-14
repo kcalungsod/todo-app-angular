@@ -10,13 +10,16 @@
         </thead>
         <tbody>
             <tr *ngFor="let task of todoList">
-                <td>{{task.Name}}</td>
-                <td>{{task.Description}}</td>
-                <td>{{task.DueDate | date}}</td>
+                <td>{{task.name}}</td>
+                <td>{{task.description}}</td>
+                <td>{{task.dueDate | date}}</td>
                 <td class="tableButton" (click)="onButtonClick(task,'view')"><button class="btnView">View</button></td>   
-                <td class="tableButton" (click)="onButtonClick(task,'update')"><button class="btnUpdate">Update</button></td>   
+                <td class="tableButton" (click)="onButtonClick(task,'create')"><button class="btnUpdate">Update</button></td>   
                 <td class="tableButton" (click)="onButtonClick(task,'delete')"><button class="btnDelete">Delete</button></td>   
             </tr>
         </tbody>
     </table>
+</div>
+<div class="CreateButton">
+    <a class="btnCreate" (click)="onCreateButtonClick()">Create a new task</a>
 </div>

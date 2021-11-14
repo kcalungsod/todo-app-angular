@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx json-server db.json"
+    "start": "npx json-server db.json",
+    "json:server": "json-server --watch db.json"
   },
   "author": "",
   "license": "ISC",

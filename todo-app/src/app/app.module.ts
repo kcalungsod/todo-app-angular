@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { ListComponent } from './list/list.component';
 import { CreateComponent } from './create/create.component';
 import { ViewComponent } from './view/view.component';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 @NgModule({
   declarations: [
@@ -17,9 +16,8 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,26 +2,29 @@ import { Injectable } from "@angular/core";
 import { todo } from "./model/todos";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from "rxjs";
+import { Logger } from './logger.service';
 
 @Injectable({
     providedIn: 'root',
   })
 
-  
 export class todosService {
-private todoListUrl!: 'api/todos'
+public todoListUrl: string = 'http://localhost:3000/';
+
 httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
-    constructor(private http: HttpClient){ 
+    constructor(private http: HttpClient, private logger: Logger){ 
     }
-
+ 
     getTodoList(): Observable<todo[]> {
-        return this.http.get<todo[]>(this.todoListUrl);
+        var api = this.todoListUrl +'todos';   
+        return this.http.get<todo[]>(api);
         }
 
     getTodo(id: number): Observable<todo> {
-        const url = `${this.todoListUrl}/${id}`;
+        var api = this.todoListUrl +'todos';  
+        const url = `${api}/${id}`;
         return this.http.get<todo>(url);
         }
 

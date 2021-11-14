@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {todo} from '../model/todos';
+import { todosService } from '../todos.service';
 
 @Component({
   selector: 'app-create',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateComponent implements OnInit {
 
-  constructor() { }
+  constructor(private todoService: todosService) { }
+public todoNew!: todo;
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.todoNew = {"id": 1, "name": "Sample todo 1", "description": "Sample todo 1 description", "dueDate": "2021-8-30", "isCompleted": false }
+    this.todoService.createTodo(this.todoNew);
   }
 
 }
