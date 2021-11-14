@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="taskContainer">
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Due Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{selectedTask.Id}}</td>
+                    <td>{{selectedTask.Name}}</td>
+                    <td>{{selectedTask.Description}}</td>
+                    <td>{{selectedTask.DueDate | date}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="BackButton">
+        <a class="btnBack" (click)="onBackButtonClick()">Back To List</a>
+    </div>
+</div>

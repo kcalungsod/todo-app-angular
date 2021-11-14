@@ -1,0 +1,22 @@
+<div class="header">Task List</div>
+<div class="ListContainer">
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Due Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let task of todoList">
+                <td>{{task.Name}}</td>
+                <td>{{task.Description}}</td>
+                <td>{{task.DueDate | date}}</td>
+                <td class="tableButton" (click)="onButtonClick(task,'view')"><button class="btnView">View</button></td>   
+                <td class="tableButton" (click)="onButtonClick(task,'update')"><button class="btnUpdate">Update</button></td>   
+                <td class="tableButton" (click)="onButtonClick(task,'delete')"><button class="btnDelete">Delete</button></td>   
+            </tr>
+        </tbody>
+    </table>
+</div>
