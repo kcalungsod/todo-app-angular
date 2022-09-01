@@ -1,0 +1,38 @@
+<section>
+    <button mat-button (click)="selectedDateFilter = null"
+        [style.font-weight]="selectedDateFilter === null ? 'bold' : 'normal'">All</button>
+    <button mat-button (click)="selectedDateFilter = true"
+        [style.font-weight]="selectedDateFilter === true ? 'bold' : 'normal'">With Due Date</button>
+    <button mat-button (click)="selectedDateFilter = false"
+        [style.font-weight]="selectedDateFilter === false ? 'bold' : 'normal'">No Due Date</button>
+</section>
+
+<section id="taskCardSection">
+    <ng-container *ngFor="let task of activeTasks | filterByDate: selectedDateFilter">
+        <mat-card id="taskCard">
+            <mat-card-title>{{task.name}}</mat-card-title>
+            <div id="taskDescriptionContainer">
+                <mat-card-content>{{task.description }}</mat-card-content>
+            </div>
+            <div id="matChipsContainer">
+                <mat-card-content>
+                    <mat-chip color="primary" selected>Active</mat-chip>
+                    <div *ngIf="task.withDateDue; else withoutDateDue">
+                        <mat-chip>With Due Date</mat-chip>
+                        <mat-chip color="accent" selected>{{task.dateDue}}</mat-chip>
+                    </div>
+                    <ng-template #withoutDateDue>
+                        <mat-chip>No Due Date</mat-chip>
+                    </ng-template>
+                </mat-card-content>
+            </div>
+            <div id="matActionsContainer">
+                <mat-card-actions>
+                    <button mat-button (click)="markDone(task)">Mark as Done</button>
+                    <button mat-button (click)="goToEdit(task)">Edit</button>
+                    <button mat-button (click)="deleteActiveTask(task)">Delete</button>
+                </mat-card-actions>
+            </div>
+        </mat-card>
+    </ng-container>
+</section>

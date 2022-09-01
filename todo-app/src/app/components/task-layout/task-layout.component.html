@@ -1,0 +1,10 @@
+<h1>Todo App - Tasks</h1>
+
+<nav mat-tab-nav-bar>
+    <a mat-tab-link routerLink="./new"> Create a new task </a>
+    <a mat-tab-link routerLink="./active"> Active Tasks </a>
+    <a mat-tab-link routerLink="./completed"> Completed Tasks </a>
+</nav>
+<mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
+
+<router-outlet></router-outlet>

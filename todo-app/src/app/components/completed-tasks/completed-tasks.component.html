@@ -1,0 +1,22 @@
+<section>
+    <ng-container *ngFor="let task of completedTasks">
+        <mat-card id="taskCard">
+            <mat-card-title>{{task.name}}</mat-card-title>
+            <div id="taskDescriptionContainer">
+                <mat-card-content>{{task.description}}</mat-card-content>
+            </div>
+            <div id="matChipsContainer">
+                <mat-card-content>
+                    <mat-chip color="primary" selected>Completed</mat-chip>
+                    <mat-chip color="accent" selected>Marked Done On: {{task.dateCompleted}}</mat-chip>
+                </mat-card-content>
+            </div>
+            <div id="matActionsContainer">
+                <mat-card-actions>
+                    <button mat-button (click)="revertToActive(task)">Revert to Active Tasks</button>
+                    <button mat-button (click)="deleteCompletedTask(task)">Delete</button>
+                </mat-card-actions>
+            </div>
+        </mat-card>
+    </ng-container>
+</section>

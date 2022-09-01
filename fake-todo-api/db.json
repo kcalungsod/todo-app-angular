@@ -1,7 +1,29 @@
 {
   "todos": [
-    {"id": 1, "name": "Sample todo 1", "description": "Sample todo 1 description", "dueDate": "2021-8-30", "isCompleted": false },
-    {"id": 2, "name": "Sample todo 2", "description": "Sample todo 2 description", "dueDate": "2021-8-10", "isCompleted": false },
-    {"id": 3, "name": "Sample todo 3", "description": "Sample todo 3 description", "dueDate": "2021-8-5", "isCompleted": false }
+    {
+      "id": "4fc1edf",
+      "name": "Do Laundry",
+      "description": "Don't forget to separate white from colored clothes.",
+      "withDateDue": true,
+      "dateDue": "9/29/2022",
+      "isCompleted": true,
+      "dateCompleted": "9/1/2022"
+    },
+    {
+      "id": "52ad9c6",
+      "name": "Update laptop",
+      "description": "Don't forget to restart!",
+      "withDateDue": false,
+      "dateDue": null,
+      "isCompleted": false
+    },
+    {
+      "id": "4118d94",
+      "name": "Create a module",
+      "description": "Angular",
+      "withDateDue": false,
+      "dateDue": null,
+      "isCompleted": false
+    }
   ]
 }
