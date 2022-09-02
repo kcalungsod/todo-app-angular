@@ -5,7 +5,7 @@ import { TaskService } from './task.service';
   providedIn: 'root'
 })
 export class IdGeneratorService {
-  private _newID: string = this.idGenerator();
+  private _newID!: string;
   private idValidity: boolean = false;
 
   private idGenerator(): string {
@@ -13,11 +13,11 @@ export class IdGeneratorService {
   }
 
   public generateUniqueId(): string {
-    while (this.idValidity === false) {
-      this.idValidity = this.taskApiService.checkNewTaskId(this._newID);
-      if (this.idValidity === true) { break; }
+    do {
       this._newID = this.idGenerator();
+      this.idValidity = this.taskApiService.checkNewTaskId(this._newID);
     }
+    while (this.idValidity === false)
 
     return this._newID;
   }
