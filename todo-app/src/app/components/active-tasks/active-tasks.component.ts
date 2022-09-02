@@ -16,7 +16,11 @@ export class ActiveTasksComponent implements OnInit {
   activeTasks: TaskEntry[] = [];
   selectedDateFilter: boolean | null = null;
 
-  constructor(private taskApiService: TaskService, private router: Router, private taskContentService: TaskContentService, private message: MessagesService) { }
+  constructor(
+    private taskApiService: TaskService,
+    private taskContentService: TaskContentService,
+    private router: Router,
+    private message: MessagesService) { }
 
   ngOnInit(): void {
     this.getActiveTasks();

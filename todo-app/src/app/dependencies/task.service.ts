@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, filter, tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { TaskEntry } from '../models/task.model';
 
@@ -31,6 +31,18 @@ export class TaskService {
       );
   }
 
+  checkNewTaskId(newId: string): boolean {
+    const data = { id: newId };
+    let isValid = true;
+
+    this.http.get<TaskEntry[]>(this.todoApi, { params: data })
+      .pipe(
+        tap(() => isValid = false)
+      );
+
+    return isValid;
+  }
+
   addTask(task: TaskEntry): Observable<TaskEntry> {
     return this.http.post<TaskEntry>(this.todoApi, task, this.httpOptions)
       .pipe(
@@ -55,7 +67,6 @@ export class TaskService {
         catchError(this.handleError<TaskEntry>())
       )
   }
-
 
   deleteTask(task: TaskEntry): Observable<TaskEntry> {
     return this.http.delete<TaskEntry>(`${this.todoApi}/${task.id}`, this.httpOptions)

@@ -15,7 +15,11 @@ import { MessagesService } from 'src/app/dependencies/messages.service';
 })
 export class EditTaskComponent extends TaskControls implements OnInit {
 
-  constructor(private taskContentService: TaskContentService, private taskApiService: TaskService, private router: Router, private message: MessagesService) {
+  constructor(
+    private taskApiService: TaskService,
+    private taskContentService: TaskContentService,
+    private router: Router,
+    private message: MessagesService) {
     super();
   }
 

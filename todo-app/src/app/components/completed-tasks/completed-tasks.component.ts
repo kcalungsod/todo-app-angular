@@ -12,7 +12,9 @@ export class CompletedTasksComponent implements OnInit {
 
   completedTasks: TaskEntry[] = [];
 
-  constructor(private taskApiService: TaskService, private message: MessagesService) { }
+  constructor(
+    private taskApiService: TaskService,
+    private message: MessagesService) { }
 
   ngOnInit(): void {
     this.getCompletedTasks();
