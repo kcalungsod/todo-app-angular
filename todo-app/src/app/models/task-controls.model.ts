@@ -4,7 +4,7 @@ export abstract class TaskControls {
     currentDate: Date = new Date();
 
     taskForm = new FormGroup({
-        taskName: new FormControl('', [Validators.required, Validators.minLength(1)]),
+        taskName: new FormControl('', [Validators.required]),
         taskDescription: new FormControl(''),
         withDateDue: new FormControl(''),
         dateDue: new FormControl(''),
@@ -38,13 +38,4 @@ export abstract class TaskControls {
             this.dateDue.updateValueAndValidity();
         });
     }
-
-    // dateDueValidator(): ValidatorFn {
-    //     return (control: AbstractControl): ValidationErrors | null => {
-    //         this.taskForm?.controls['withDateDue'].valueChanges.subscribe(() => {
-    //             return this.taskForm?.controls['withDateDue'].value !== 'true' ? null : Validators.required(control);
-    //         });
-    //         return null;
-    //     }
-    // }
 }

@@ -1,3 +1,4 @@
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessagesService } from 'src/app/dependencies/messages.service';
@@ -21,13 +22,19 @@ export class ActiveTasksComponent implements OnInit {
     this.getActiveTasks();
   }
 
+  drop(event: CdkDragDrop<TaskEntry>): void {
+    moveItemInArray(this.activeTasks, event.previousIndex, event.currentIndex);
+  }
+
   getActiveTasks(): void {
-    this.taskApiService.getActiveTasks().subscribe((data) => (this.activeTasks = data));
+    const completionStatus: boolean = false;
+    this.taskApiService.getRelevantTasks(completionStatus).subscribe((data) => (this.activeTasks = data));
   }
 
   markDone(selectedTask: TaskEntry): void {
     const status: boolean = true;
     const dateCompleted: Date = new Date().toLocaleDateString() as unknown as Date;
+
     this.taskApiService.toggleTaskCompletion(selectedTask, status, dateCompleted).subscribe(() => (this.getActiveTasks()));
     this.message.openSnackBar("Marked task as complete!");
   }

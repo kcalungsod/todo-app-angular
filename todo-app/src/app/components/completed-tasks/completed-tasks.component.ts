@@ -19,12 +19,14 @@ export class CompletedTasksComponent implements OnInit {
   }
 
   getCompletedTasks(): void {
-    this.taskApiService.getCompletedTasks().subscribe((data) => (this.completedTasks = data));
+    const completionStatus: boolean = true;
+    this.taskApiService.getRelevantTasks(completionStatus).subscribe((data) => (this.completedTasks = data));
   }
 
   revertToActive(selectedTask: TaskEntry): void {
     const status: boolean = false;
     const dateCompleted: Date = null as unknown as Date;
+
     this.taskApiService.toggleTaskCompletion(selectedTask, status, dateCompleted).subscribe(() => (this.getCompletedTasks()));
     this.message.openSnackBar("Reverted a task back to active!");
   }

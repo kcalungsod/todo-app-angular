@@ -26,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
     CompletedTasksModule,
     TaskRoutingModule,
     MatTabsModule
-  ]
+  ],
+  exports: [TaskLayoutComponent]
 })
 export class TaskLayoutModule { }

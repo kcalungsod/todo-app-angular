@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, filter, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { TaskEntry } from '../models/task.model';
 
@@ -22,20 +22,11 @@ export class TaskService {
     }
   }
 
-  getActiveTasks(): Observable<TaskEntry[]> {
-    let filterActive = { isCompleted: false };
-    return this.http.get<TaskEntry[]>(this.todoApi, { params: filterActive })
+  getRelevantTasks(completionStatus: boolean): Observable<TaskEntry[]> {
+    let filterTasks = { isCompleted: completionStatus };
+    return this.http.get<TaskEntry[]>(this.todoApi, { params: filterTasks })
       .pipe(
-        tap((taskEntries: TaskEntry[]) => console.log(`Retrieved ${taskEntries.length} active task entries`)),
-        catchError(this.handleError<TaskEntry[]>())
-      );
-  }
-
-  getCompletedTasks(): Observable<TaskEntry[]> {
-    let filterComplete = { isCompleted: true };
-    return this.http.get<TaskEntry[]>(this.todoApi, { params: filterComplete })
-      .pipe(
-        tap((taskEntries: TaskEntry[]) => console.log(`Retrieved ${taskEntries.length} completed task entries`)),
+        tap((taskEntries: TaskEntry[]) => console.log(`Retrieved ${taskEntries.length} where completion status = ${completionStatus}`)),
         catchError(this.handleError<TaskEntry[]>())
       );
   }

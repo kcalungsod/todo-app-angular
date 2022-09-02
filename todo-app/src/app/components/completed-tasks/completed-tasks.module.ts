@@ -15,6 +15,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatCardModule,
     MatChipsModule,
     MatSnackBarModule
-  ]
+  ],
+  exports: [CompletedTasksComponent]
 })
 export class CompletedTasksModule { }

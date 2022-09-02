@@ -5,7 +5,7 @@
                 <mat-form-field>
                     <mat-label>Task</mat-label>
                     <input matInput placeholder="ex. Do Laundy" formControlName="taskName">
-                    <mat-error *ngIf="taskName?.errors?.['required']">Task is required</mat-error>
+                    <mat-error *ngIf="taskName?.errors | taskNameErrorMessage">Task is required</mat-error>
                 </mat-form-field>
             </div>
             <div id="taskDescriptionContainer">
@@ -29,7 +29,7 @@
                     <mat-hint>MM/DD/YYYY</mat-hint>
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
-                    <mat-error *ngIf="dateDue?.errors?.['required']">Due Date is required</mat-error>
+                    <mat-error *ngIf="dateDue?.errors | dateDueErrorMessage">Due Date is required</mat-error>
                 </mat-form-field>
             </div>
         </div>

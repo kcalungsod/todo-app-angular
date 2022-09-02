@@ -11,11 +11,12 @@
 
 mat-card-title {
     line-height: 1.2;
+    height: max-content;
 }
 
 #taskDescriptionContainer {
-    height: 30px;
     margin: 20px 0 10px 0;
+    height: max-content;
 }
 
 #matChipsContainer {

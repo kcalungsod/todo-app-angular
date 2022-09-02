@@ -8,8 +8,9 @@
 </section>
 
 <section id="taskCardSection">
-    <ng-container *ngFor="let task of activeTasks | filterByDate: selectedDateFilter">
-        <mat-card id="taskCard">
+    <div *ngFor="let task of activeTasks | filterByDate: selectedDateFilter" cdkDropList
+        (cdkDropListDropped)="drop($event)">
+        <mat-card id="taskCard" cdkDrag>
             <mat-card-title>{{task.name}}</mat-card-title>
             <div id="taskDescriptionContainer">
                 <mat-card-content>{{task.description }}</mat-card-content>
@@ -34,5 +35,5 @@
                 </mat-card-actions>
             </div>
         </mat-card>
-    </ng-container>
+    </div>
 </section>

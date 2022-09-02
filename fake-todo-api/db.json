@@ -6,8 +6,7 @@
       "description": "Don't forget to separate white from colored clothes.",
       "withDateDue": true,
       "dateDue": "9/29/2022",
-      "isCompleted": true,
-      "dateCompleted": "9/1/2022"
+      "isCompleted": false
     },
     {
       "id": "52ad9c6",
@@ -15,12 +14,29 @@
       "description": "Don't forget to restart!",
       "withDateDue": false,
       "dateDue": null,
-      "isCompleted": false
+      "isCompleted": true,
+      "dateCompleted": "9/2/2022"
     },
     {
       "id": "4118d94",
       "name": "Create a module",
       "description": "Angular",
+      "withDateDue": false,
+      "dateDue": null,
+      "isCompleted": false
+    },
+    {
+      "id": "c047be8",
+      "name": "Revise code",
+      "description": "Refactor!",
+      "withDateDue": false,
+      "dateDue": null,
+      "isCompleted": false
+    },
+    {
+      "id": "f90c3ca",
+      "name": "Testing wrap",
+      "description": "",
       "withDateDue": false,
       "dateDue": null,
       "isCompleted": false

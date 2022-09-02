@@ -13,6 +13,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { RouterModule } from '@angular/router';
+import { PipeModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
   declarations: [NewTaskComponent],
@@ -21,6 +22,7 @@ import { RouterModule } from '@angular/router';
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
+    PipeModule,
     MatCardModule,
     MatInputModule,
     MatCheckboxModule,
@@ -28,6 +30,7 @@ import { RouterModule } from '@angular/router';
     MatNativeDateModule,
     MatButtonModule,
     MatSnackBarModule
-  ]
+  ],
+  exports: [NewTaskComponent]
 })
 export class NewTaskModule { }
