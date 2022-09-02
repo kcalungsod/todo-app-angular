@@ -7,9 +7,8 @@
         [style.font-weight]="selectedDateFilter === false ? 'bold' : 'normal'">No Due Date</button>
 </section>
 
-<section id="taskCardSection">
-    <div *ngFor="let task of activeTasks | filterByDate: selectedDateFilter" cdkDropList
-        (cdkDropListDropped)="drop($event)">
+<section id="taskCardSection" cdkDropList (cdkDropListDropped)="drop($event)">
+    <div *ngFor="let task of activeTasks | filterByDate: selectedDateFilter">
         <mat-card id="taskCard" cdkDrag>
             <mat-card-title>{{task.name}}</mat-card-title>
             <div id="taskDescriptionContainer">

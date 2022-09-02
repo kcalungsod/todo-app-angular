@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, HostListener, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostBinding, HostListener, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { IdGeneratorService } from 'src/app/dependencies/id-generator.service';
 import { TaskService } from 'src/app/dependencies/task.service';
@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import { TaskControls } from 'src/app/models/task-controls.model';
 import { MessagesService } from 'src/app/dependencies/messages.service';
+import { BuiltinTypeName } from '@angular/compiler';
 
 @Component({
   selector: 'app-new-task',
@@ -14,7 +15,7 @@ import { MessagesService } from 'src/app/dependencies/messages.service';
   styleUrls: ['./new-task.component.scss']
 })
 export class NewTaskComponent extends TaskControls implements OnInit {
-  constructor(private idService: IdGeneratorService, private taskApiService: TaskService, private router: Router, private message: MessagesService) {
+  constructor(private idService: IdGeneratorService, private taskApiService: TaskService, private router: Router, private message: MessagesService, private element: ElementRef) {
     super();
   }
 
