@@ -2,7 +2,6 @@
     width: 300px;
     margin: 20px 20px 10px 10px;
     padding: 20px;
-    cursor: move;
 }
 
 #taskCardSection {
@@ -21,12 +20,8 @@ mat-card-title {
 }
 
 #matChipsContainer {
-    height: 50px;
+    height: max-content;
     margin: 30px 0 10px 0;
-}
-
-mat-chip {
-    border-radius: 5px;
 }
 
 #matActionsContainer {

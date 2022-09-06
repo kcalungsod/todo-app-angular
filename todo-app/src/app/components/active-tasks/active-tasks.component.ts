@@ -15,6 +15,7 @@ export class ActiveTasksComponent implements OnInit {
 
   activeTasks: TaskEntry[] = [];
   selectedDateFilter: boolean | null = null;
+  selectedPriorityTag: string[] = [];
 
   constructor(
     private taskApiService: TaskService,
@@ -28,6 +29,25 @@ export class ActiveTasksComponent implements OnInit {
 
   drop(event: CdkDragDrop<TaskEntry>): void {
     moveItemInArray(this.activeTasks, event.previousIndex, event.currentIndex);
+  }
+
+  stylePriorityTag(priorityTag: string): any {
+    switch (priorityTag) {
+      case "Important and urgent":
+        return { 'background-color': 'red', 'color': 'white' };
+      case "Important but not urgent":
+        return { 'background-color': 'green', 'color': 'white' };
+      case "Urgent but not important":
+        return { 'background-color': 'orange', 'color': 'white' };
+      case "Not important or urgent":
+        return { 'background-color': 'purple', 'color': 'white' };
+      default:
+        return { 'background-color': 'black', 'color': 'white' };
+    }
+  }
+
+  checkIfTagIsSelected(tag: string): void {
+    this.selectedPriorityTag.includes(tag) ? this.selectedPriorityTag.splice(this.selectedPriorityTag.indexOf(tag), 1) : this.selectedPriorityTag.push(tag);
   }
 
   getActiveTasks(): void {

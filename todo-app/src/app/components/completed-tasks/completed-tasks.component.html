@@ -7,8 +7,11 @@
             </div>
             <div id="matChipsContainer">
                 <mat-card-content>
-                    <mat-chip color="primary" selected>Completed</mat-chip>
-                    <mat-chip color="accent" selected>Marked Done On: {{task.dateCompleted}}</mat-chip>
+                    <mat-chip-list>
+                        <mat-chip color="primary" selected>Completed</mat-chip>
+                        <mat-chip color="accent" selected>Marked Done: {{task.dateCompleted}}</mat-chip>
+                    </mat-chip-list>
+
                 </mat-card-content>
             </div>
             <div id="matActionsContainer">

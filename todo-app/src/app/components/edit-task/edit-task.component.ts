@@ -54,6 +54,7 @@ export class EditTaskComponent extends TaskControls implements OnInit {
   private editActiveTask(): TaskEntry {
     const withDateDueChecker: boolean = this.withDateDue.value ? true : false;
     const dueDateChecker: Date = withDateDueChecker && this.dateDue.value ? this.dateDue.value.toLocaleDateString() : null;
+    const priorityTagValue: string = this.priorityTag.value === "" ? "No priority tag" : this.priorityTag.value;
 
     return {
       id: this.oldTaskID,
@@ -62,6 +63,7 @@ export class EditTaskComponent extends TaskControls implements OnInit {
       withDateDue: withDateDueChecker,
       dateDue: dueDateChecker,
       isCompleted: false,
+      priorityTag: priorityTagValue
     }
   }
 }

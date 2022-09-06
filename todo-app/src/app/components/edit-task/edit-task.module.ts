@@ -10,6 +10,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
 
 import { RouterModule } from '@angular/router';
 import { PipeModule } from 'src/app/pipes/pipes.module';
@@ -29,7 +31,9 @@ import { PipeModule } from 'src/app/pipes/pipes.module';
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatIconModule,
+    MatSelectModule
   ],
   providers: [],
   exports: [EditTaskComponent]

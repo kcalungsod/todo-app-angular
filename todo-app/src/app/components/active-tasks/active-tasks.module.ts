@@ -8,7 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 import { EditTaskModule } from '../edit-task/edit-task.module';
 import { PipeModule } from 'src/app/pipes/pipes.module';
@@ -25,6 +25,7 @@ import { PipeModule } from 'src/app/pipes/pipes.module';
     MatCardModule,
     MatChipsModule,
     MatSnackBarModule,
+    MatButtonToggleModule,
     DragDropModule
   ],
   exports: [ActiveTasksComponent]

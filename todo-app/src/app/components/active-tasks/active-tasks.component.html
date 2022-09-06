@@ -1,29 +1,50 @@
 <section>
-    <button mat-button (click)="selectedDateFilter = null"
-        [style.font-weight]="selectedDateFilter === null ? 'bold' : 'normal'">All</button>
-    <button mat-button (click)="selectedDateFilter = true"
-        [style.font-weight]="selectedDateFilter === true ? 'bold' : 'normal'">With Due Date</button>
-    <button mat-button (click)="selectedDateFilter = false"
-        [style.font-weight]="selectedDateFilter === false ? 'bold' : 'normal'">No Due Date</button>
+    <mat-button-toggle-group>
+        <mat-button-toggle (click)="selectedDateFilter = null"
+            [style.font-weight]="selectedDateFilter === null ? 'bold' : 'normal'">All Tasks</mat-button-toggle>
+        <mat-button-toggle (click)="selectedDateFilter = true"
+            [style.font-weight]="selectedDateFilter === true ? 'bold' : 'normal'">With Due Date</mat-button-toggle>
+        <mat-button-toggle (click)="selectedDateFilter = false"
+            [style.font-weight]="selectedDateFilter === false ? 'bold' : 'normal'">No Due Date</mat-button-toggle>
+    </mat-button-toggle-group>
 </section>
 
-<section id="taskCardSection" cdkDropList (cdkDropListDropped)="drop($event)">
-    <div *ngFor="let task of activeTasks | filterByDate: selectedDateFilter">
-        <mat-card id="taskCard" cdkDrag>
+<section>
+    <mat-button-toggle-group multiple>
+        <mat-button-toggle (click)="checkIfTagIsSelected('Important and urgent')">Important and urgent
+        </mat-button-toggle>
+        <mat-button-toggle (click)="checkIfTagIsSelected('Important but not urgent')">Important but not urgent
+        </mat-button-toggle>
+        <mat-button-toggle (click)="checkIfTagIsSelected('Urgent but not important')">Urgent but not important
+        </mat-button-toggle>
+        <mat-button-toggle (click)="checkIfTagIsSelected('Not important or urgent')">Not important or urgent
+        </mat-button-toggle>
+        <mat-button-toggle (click)="checkIfTagIsSelected('No priority tag')">No priority tag</mat-button-toggle>
+    </mat-button-toggle-group>
+</section>
+
+<section id="taskCardSection">
+    <div *ngFor="let task of activeTasks | filterByDate: selectedDateFilter | filterByPriorityTag: selectedPriorityTag">
+        <mat-card id="taskCard">
             <mat-card-title>{{task.name}}</mat-card-title>
             <div id="taskDescriptionContainer">
                 <mat-card-content>{{task.description }}</mat-card-content>
             </div>
             <div id="matChipsContainer">
                 <mat-card-content>
-                    <mat-chip color="primary" selected>Active</mat-chip>
-                    <div *ngIf="task.withDateDue; else withoutDateDue">
-                        <mat-chip>With Due Date</mat-chip>
-                        <mat-chip color="accent" selected>{{task.dateDue}}</mat-chip>
-                    </div>
-                    <ng-template #withoutDateDue>
-                        <mat-chip>No Due Date</mat-chip>
-                    </ng-template>
+                    <mat-chip-list>
+                        <mat-chip color="primary" selected>Active</mat-chip>
+                        <mat-chip [ngStyle]="stylePriorityTag(task.priorityTag)">{{task.priorityTag}}</mat-chip>
+
+                        <div *ngIf="task.withDateDue; else withoutDateDue">
+                            <mat-chip>With Due Date</mat-chip>
+                            <mat-chip color="accent" selected>{{task.dateDue}}</mat-chip>
+                        </div>
+                        <ng-template #withoutDateDue>
+                            <mat-chip>No Due Date</mat-chip>
+                        </ng-template>
+
+                    </mat-chip-list>
                 </mat-card-content>
             </div>
             <div id="matActionsContainer">
