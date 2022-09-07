@@ -33,6 +33,7 @@ export class EditTaskComponent extends TaskControls implements OnInit {
   ngOnInit(): void {
     const selectedTask = this.taskContentService.onTaskReceived();
     const oldDateDue = selectedTask?.dateDue ? new Date(selectedTask?.dateDue as Date) : null;
+    console.log(selectedTask.subTasks);
 
     this.dateDueValidator();
 

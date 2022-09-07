@@ -7,7 +7,6 @@ import { MaxLengthValidator, RequiredValidator, ValidationErrors } from '@angula
 export class TaskNameErrorMessagePipe implements PipeTransform {
 
   transform(validationErrors: ValidationErrors | null | undefined): string {
-    console.log(validationErrors);
 
     if (!validationErrors) {
       return "";

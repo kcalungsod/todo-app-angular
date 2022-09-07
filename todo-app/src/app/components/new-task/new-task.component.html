@@ -52,19 +52,11 @@
                     <mat-card-actions>
                         <button mat-button [routerLink]="['/task/active']">CANCEL</button>
                         <button mat-button id="submit-btn" (click)="onSubmit()"
-                            [class.mat-button-disabled]="taskForm.valid ? false: true">SUBMIT</button>
+                            [class.mat-button-disabled]="taskForm.valid && subTasks.valid? false: true">SUBMIT</button>
                     </mat-card-actions>
                 </div>
             </form>
         </mat-card>
     </div>
-
-    <div id="subTaskContainer">
-        <mat-card>
-            <h2>Subtasks?</h2>
-            <button mat-mini-fab color="primary">
-                <mat-icon aria-hidden="false" aria-label="add-subtask-btn" fontIcon="add"></mat-icon>
-            </button>
-        </mat-card>
-    </div>
+    <app-new-subtask [parentForm]="taskForm"></app-new-subtask>
 </section>

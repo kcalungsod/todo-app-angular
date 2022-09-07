@@ -46,8 +46,7 @@
       "withDateDue": true,
       "dateDue": "9/7/2022",
       "isCompleted": false,
-      "priorityTag": "Important but not urgent",
-      "dateCompleted": null
+      "priorityTag": "No priority tag"
     },
     {
       "id": "6a4c092",
@@ -66,6 +65,15 @@
       "dateDue": null,
       "isCompleted": false,
       "priorityTag": "Not important or urgent"
+    },
+    {
+      "id": "d412c74",
+      "name": "Testing subtask",
+      "description": "",
+      "withDateDue": false,
+      "dateDue": null,
+      "isCompleted": false,
+      "priorityTag": "No priority tag"
     }
   ]
 }

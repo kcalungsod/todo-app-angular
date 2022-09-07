@@ -1,0 +1,31 @@
+<div [formGroup]="taskForm">
+    <div formArrayName="subTasks">
+        <mat-card>
+            <div class="headerContainer">
+                <div class="titleContainer">
+                    <h2>Subtasks?</h2>
+                </div>
+                <div class="addBtnContainer">
+                    <button mat-mini-fab color="primary" (click)="addSubTask()">
+                        <mat-icon aria-hidden="false" aria-label="add-subtask-btn" fontIcon="add"></mat-icon>
+                    </button>
+                </div>
+            </div>
+            <div class="subTaskContainer" *ngFor="let control of subTasks.controls; let subTaskIndex = index;">
+                <div class="inputContainer">
+                    <mat-form-field [formGroupName]="subTaskIndex">
+                        <mat-label>Subtask # {{subTaskIndex + 1}}</mat-label>
+                        <input matInput placeholder="Type anything" formControlName="subTask">
+                        <mat-error>{{subTasks.at(subTaskIndex).errors | subTaskErrorMessage}}</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="deleteBtnContainer">
+                    <button (click)="deleteBtn(subTaskIndex)" mat-icon-button>
+                        <mat-icon fontIcon="delete"></mat-icon>
+                    </button>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+</div>

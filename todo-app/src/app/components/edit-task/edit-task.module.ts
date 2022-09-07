@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { EditTaskComponent } from './edit-task.component';
 import { MatCardModule } from '@angular/material/card';
@@ -16,6 +16,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { RouterModule } from '@angular/router';
 import { PipeModule } from 'src/app/pipes/pipes.module';
 
+import { NewSubtaskModule } from '../new-subtask/new-subtask.module';
 
 @NgModule({
   declarations: [EditTaskComponent],
@@ -23,7 +24,6 @@ import { PipeModule } from 'src/app/pipes/pipes.module';
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
-    FormsModule,
     PipeModule,
     MatCardModule,
     MatInputModule,
@@ -33,7 +33,8 @@ import { PipeModule } from 'src/app/pipes/pipes.module';
     MatButtonModule,
     MatSnackBarModule,
     MatIconModule,
-    MatSelectModule
+    MatSelectModule,
+    NewSubtaskModule
   ],
   providers: [],
   exports: [EditTaskComponent]

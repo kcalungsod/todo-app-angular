@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { NewTaskComponent } from './new-task.component';
 
 import { MatCardModule } from '@angular/material/card';
@@ -11,7 +11,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
-import { MatSelect, MatSelectModule } from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
+
+import { NewSubtaskModule } from '../new-subtask/new-subtask.module';
 
 import { RouterModule } from '@angular/router';
 import { PipeModule } from 'src/app/pipes/pipes.module';
@@ -22,7 +24,6 @@ import { PipeModule } from 'src/app/pipes/pipes.module';
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
-    FormsModule,
     PipeModule,
     MatCardModule,
     MatInputModule,
@@ -32,7 +33,8 @@ import { PipeModule } from 'src/app/pipes/pipes.module';
     MatButtonModule,
     MatSnackBarModule,
     MatIconModule,
-    MatSelectModule
+    MatSelectModule,
+    NewSubtaskModule
   ],
   exports: [NewTaskComponent]
 })

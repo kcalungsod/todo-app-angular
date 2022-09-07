@@ -44,6 +44,7 @@ export class NewTaskComponent extends TaskControls implements OnInit {
     const withDateDueChecker: boolean = this.withDateDue.value ? true : false;
     const dueDateChecker: Date = withDateDueChecker && this.dateDue.value ? this.dateDue.value.toLocaleDateString() : null;
     const priorityTagValue: string = this.priorityTag.value === "" ? "No priority tag" : this.priorityTag.value;
+    this.subTasks.value.map((subTask: object) => (Object.assign(subTask, { done: false })));
 
     return {
       id: this.idService.generateUniqueId(),
@@ -52,7 +53,8 @@ export class NewTaskComponent extends TaskControls implements OnInit {
       withDateDue: withDateDueChecker,
       dateDue: dueDateChecker,
       isCompleted: false,
-      priorityTag: priorityTagValue
+      priorityTag: priorityTagValue,
+      subTasks: this.subTasks.value
     }
   }
 }

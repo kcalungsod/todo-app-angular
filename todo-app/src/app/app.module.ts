@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TaskLayoutModule } from './components/task-layout/task-layout.module';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NewSubtaskComponent } from './components/new-subtask/new-subtask.component';
 
 
 @NgModule({

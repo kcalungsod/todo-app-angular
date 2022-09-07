@@ -1,4 +1,4 @@
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { ControlContainer, Form, FormArray, FormControl, FormGroup, Validators } from "@angular/forms";
 
 export abstract class TaskControls {
     currentDate: Date = new Date();
@@ -11,6 +11,7 @@ export abstract class TaskControls {
         withDateDue: new FormControl(''),
         dateDue: new FormControl(''),
         priorityTag: new FormControl(''),
+        subTasks: new FormArray([])
     });
 
     get taskName(): FormControl {
@@ -33,16 +34,20 @@ export abstract class TaskControls {
         return this.taskForm.get('priorityTag') as FormControl;
     }
 
+    get subTasks(): FormArray {
+        return this.taskForm.get('subTasks') as FormArray;
+    }
+
     dateDueCheckBox(event: any): void {
         console.log(event.checked)
     }
 
     dateDueValidator(): void {
-        this.taskForm?.controls['withDateDue'].valueChanges.subscribe(() => {
-            console.log(this.withDateDue.value);
+        this.withDateDue.valueChanges.subscribe(() => {
             if (this.withDateDue.value === true) { this.dateDue.setValidators(Validators.required); }
             else { this.dateDue.clearValidators(); }
             this.dateDue.updateValueAndValidity();
         });
     }
+
 }

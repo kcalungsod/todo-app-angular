@@ -1,0 +1,31 @@
+mat-card {
+    width: 300px;
+    margin: 20px 0 0 20px;
+}
+
+.subTaskContainer {
+    display: flex;
+    flex-wrap: nowrap;
+    margin-top: 10px;
+}
+
+.headerContainer {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.titleContainer {
+    margin: 5px 30px 0 0;
+}
+
+.inputContainer {
+    width: 100%;
+}
+
+.inputContainer>mat-form-field {
+    width: 100%;
+}
+
+.deleteBtnContainer {
+    margin-top: 10px;
+}
