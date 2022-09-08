@@ -1,17 +1,42 @@
 <section>
-    <ng-container *ngFor="let task of completedTasks">
+    <ng-container *ngFor="let task of completedTasks | filterByPriorityTag: selectedPriorityTag">
         <mat-card id="taskCard">
             <mat-card-title>{{task.name}}</mat-card-title>
             <div id="taskDescriptionContainer">
                 <mat-card-content>{{task.description}}</mat-card-content>
             </div>
             <div id="matChipsContainer">
+                <mat-card-content *ngIf="task.subTasks && task.subTasks.length > 0">
+                    <mat-expansion-panel [expanded]="true">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>Subtasks</mat-panel-title>
+                            <mat-panel-description>Click to toggle</mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <div *ngFor="let subtask of task.subTasks" class="subTaskContainer">
+                            <div>
+                                <mat-icon fontIcon="check" *ngIf="subtask.done === true ; else notDone"></mat-icon>
+                                <ng-template #notDone>
+                                    <mat-icon fontIcon="close" #notDone></mat-icon>
+                                </ng-template>
+                            </div>
+                            <div>
+                                {{subtask.subTask}}
+                            </div>
+                            <div *ngIf="subtask.done=== true; else noDueDate">
+                                {{subtask.dateCompleted}}
+                            </div>
+                            <ng-template #noDueDate>
+                                Incomplete
+                            </ng-template>
+                        </div>
+                    </mat-expansion-panel>
+                </mat-card-content>
                 <mat-card-content>
                     <mat-chip-list>
                         <mat-chip color="primary" selected>Completed</mat-chip>
+                        <mat-chip *ngIf="task.withDateDue">Due Date: {{task.dateDue}}</mat-chip>
                         <mat-chip color="accent" selected>Marked Done: {{task.dateCompleted}}</mat-chip>
                     </mat-chip-list>
-
                 </mat-card-content>
             </div>
             <div id="matActionsContainer">

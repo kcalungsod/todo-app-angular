@@ -16,7 +16,8 @@
                     <mat-form-field [formGroupName]="subTaskIndex">
                         <mat-label>Subtask # {{subTaskIndex + 1}}</mat-label>
                         <input matInput placeholder="Type anything" formControlName="subTask">
-                        <mat-error>{{subTasks.at(subTaskIndex).errors | subTaskErrorMessage}}</mat-error>
+                        <mat-error>{{subTasks.at(subTaskIndex).get("subTask")?.errors | subTaskErrorMessage}}
+                        </mat-error>
                     </mat-form-field>
                 </div>
 

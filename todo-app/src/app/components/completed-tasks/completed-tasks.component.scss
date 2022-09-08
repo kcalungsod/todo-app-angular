@@ -7,6 +7,7 @@ section {
     width: 300px;
     margin: 20px 20px 10px 10px;
     padding: 20px;
+    height: max-content;
 }
 
 mat-card-title {
@@ -14,16 +15,32 @@ mat-card-title {
 }
 
 #taskDescriptionContainer {
-    height: 30px;
+    height: max-content;
     margin: 10px 0 20px 0;
 }
 
 #matChipsContainer {
-    height: 50px;
+    height: max-content;
     margin: 30px 0 10px 0;
 }
 
 #matActionsContainer {
-    height: 50px;
+    height: max-content;
     margin: 10px;
+}
+
+mat-card-content {
+    margin-top: 30px;
+}
+
+.subTaskContainer {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.subTaskContainer>div {
+    margin: 0 5px 0px 5px;
+    padding: 5px;
 }

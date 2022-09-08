@@ -29,7 +29,7 @@ export class EditTaskComponent extends TaskControls implements OnInit {
   }
 
   oldTaskID!: string;
-  subTasksReceived!: string[] | undefined;
+  subTasksReceived!: object[] | undefined;
 
   ngOnInit(): void {
     const selectedTask = this.taskContentService.onTaskReceived();

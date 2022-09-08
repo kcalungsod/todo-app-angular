@@ -61,7 +61,6 @@ export class TaskService {
   }
 
   toggleSubTaskCompletion(task: TaskEntry, subTaskValue: string, status: boolean, dateCompletedValue: Date): Observable<TaskEntry> {
-
     const subTasksJSON = JSON.stringify(task.subTasks);
     const subTasks = JSON.parse(subTasksJSON);
 

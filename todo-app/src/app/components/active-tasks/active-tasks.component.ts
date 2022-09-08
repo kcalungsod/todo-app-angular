@@ -1,6 +1,5 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { PathLocationStrategy } from '@angular/common';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessagesService } from 'src/app/dependencies/messages.service';
 import { TaskContentService } from 'src/app/dependencies/task-content.service';
@@ -24,8 +23,7 @@ export class ActiveTasksComponent implements OnInit {
     private taskApiService: TaskService,
     private taskContentService: TaskContentService,
     private router: Router,
-    private message: MessagesService,
-    private changeDetector: ChangeDetectorRef) { }
+    private message: MessagesService) { }
 
   ngOnInit(): void {
     this.getActiveTasks();
@@ -52,6 +50,11 @@ export class ActiveTasksComponent implements OnInit {
 
   checkIfTagIsSelected(tag: string): void {
     this.selectedPriorityTag.includes(tag) ? this.selectedPriorityTag.splice(this.selectedPriorityTag.indexOf(tag), 1) : this.selectedPriorityTag.push(tag);
+  }
+
+  checkIfOverdue(taskDateDue: Date): boolean {
+    if (new Date(taskDateDue) < (new Date())) { return true; }
+    return false;
   }
 
   getActiveTasks(): void {

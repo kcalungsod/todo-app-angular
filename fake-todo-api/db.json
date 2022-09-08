@@ -6,21 +6,21 @@
       "description": "Don't forget to separate white from colored clothes.",
       "withDateDue": true,
       "dateDue": "9/29/2022",
-      "isCompleted": false,
+      "isCompleted": true,
       "priorityTag": "No priority tag",
       "subTasks": [
         {
           "subTask": "soak clothing",
-          "done": false,
-          "dateCompleted": null
+          "done": true,
+          "dateCompleted": "9/8/2022"
         },
         {
           "subTask": "buy detergent",
-          "done": false,
-          "dateCompleted": null
+          "done": true,
+          "dateCompleted": "9/8/2022"
         }
       ],
-      "dateCompleted": null
+      "dateCompleted": "9/8/2022"
     },
     {
       "id": "52ad9c6",
@@ -28,9 +28,20 @@
       "description": "Don't forget to restart!",
       "withDateDue": true,
       "dateDue": "9/16/2022",
-      "isCompleted": true,
-      "priorityTag": "Important and urgent",
-      "dateCompleted": "9/6/2022"
+      "isCompleted": false,
+      "priorityTag": "No priority tag",
+      "subTasks": [
+        {
+          "subTask": "Have a laptop",
+          "done": true,
+          "dateCompleted": "9/8/2022"
+        },
+        {
+          "subTask": "Have internet connection",
+          "done": false
+        }
+      ],
+      "dateCompleted": null
     },
     {
       "id": "4118d94",
@@ -40,17 +51,23 @@
       "dateDue": null,
       "isCompleted": true,
       "priorityTag": "No priority tag",
+      "subTasks": [
+        {
+          "subTask": "Let's try a lengthy subtask ............",
+          "done": false
+        }
+      ],
       "dateCompleted": "9/8/2022"
     },
     {
       "id": "c047be8",
       "name": "Revise code",
       "description": "Refactor!",
-      "withDateDue": false,
-      "dateDue": null,
-      "isCompleted": true,
+      "withDateDue": true,
+      "dateDue": "9/7/2022",
+      "isCompleted": false,
       "priorityTag": "No priority tag",
-      "dateCompleted": "9/6/2022"
+      "subTasks": []
     },
     {
       "id": "f90c3ca",
@@ -61,40 +78,6 @@
       "isCompleted": true,
       "priorityTag": "No priority tag",
       "dateCompleted": "9/8/2022"
-    },
-    {
-      "id": "6a4c092",
-      "name": "Do laundry",
-      "description": "",
-      "withDateDue": false,
-      "dateDue": null,
-      "isCompleted": false,
-      "priorityTag": "Urgent but not important"
-    },
-    {
-      "id": "a1a86d4",
-      "name": "Let's get better and better",
-      "description": "",
-      "withDateDue": false,
-      "dateDue": null,
-      "isCompleted": false,
-      "priorityTag": "Not important or urgent"
-    },
-    {
-      "id": "15095b2",
-      "name": "Testing testing",
-      "description": "",
-      "withDateDue": false,
-      "dateDue": null,
-      "isCompleted": false,
-      "priorityTag": "No priority tag",
-      "subTasks": [
-        {
-          "subTask": "Testing 1",
-          "done": false,
-          "dateCompleted": null
-        }
-      ]
     },
     {
       "id": "2a90638",

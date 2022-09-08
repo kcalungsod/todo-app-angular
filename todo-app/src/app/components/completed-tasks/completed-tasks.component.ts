@@ -11,6 +11,9 @@ import { TaskEntry } from 'src/app/models/task.model';
 export class CompletedTasksComponent implements OnInit {
 
   completedTasks: TaskEntry[] = [];
+  panelOpenState: boolean = false;
+  selectedDateFilter: boolean | null = null;
+  selectedPriorityTag: string[] = [];
 
   constructor(
     private taskApiService: TaskService,
@@ -18,6 +21,10 @@ export class CompletedTasksComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCompletedTasks();
+  }
+
+  checkIfTagIsSelected(tag: string): void {
+    this.selectedPriorityTag.includes(tag) ? this.selectedPriorityTag.splice(this.selectedPriorityTag.indexOf(tag), 1) : this.selectedPriorityTag.push(tag);
   }
 
   getCompletedTasks(): void {

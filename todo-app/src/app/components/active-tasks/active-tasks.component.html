@@ -32,13 +32,10 @@
             </div>
             <div id="matChipsContainer">
                 <mat-card-content *ngIf="task.subTasks && task.subTasks.length > 0">
-                    <mat-expansion-panel [expanded]="true" (opened)="panelOpenState = true"
-                        (closed)="panelOpenState = false">
+                    <mat-expansion-panel [expanded]="true">
                         <mat-expansion-panel-header>
                             <mat-panel-title>Subtasks</mat-panel-title>
-                            <mat-panel-description>
-                                {{panelOpenState === true ? "Hide subtasks": "Show subtasks"}}
-                            </mat-panel-description>
+                            <mat-panel-description>Click to toggle</mat-panel-description>
                         </mat-expansion-panel-header>
                         <div *ngFor="let subtask of task.subTasks">
                             <mat-checkbox (change)="toggleCheckBox($event, task, subtask.subTask)"
@@ -52,6 +49,8 @@
                 </mat-card-content>
                 <mat-card-content>
                     <mat-chip-list>
+                        <mat-chip *ngIf="task.withDateDue && checkIfOverdue(task.dateDue)" class="overdueChip">Overdue
+                        </mat-chip>
                         <mat-chip color="primary" selected>Active</mat-chip>
                         <mat-chip [ngStyle]="stylePriorityTag(task.priorityTag)">{{task.priorityTag}}</mat-chip>
 

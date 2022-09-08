@@ -13,7 +13,7 @@ export class NewSubtaskComponent extends TaskControls implements OnInit {
   parentForm!: FormGroup;
 
   @Input()
-  subTasksArray!: string[] | undefined;
+  subTasksArray!: object[] | undefined;
 
   constructor() {
     super();
@@ -21,14 +21,13 @@ export class NewSubtaskComponent extends TaskControls implements OnInit {
 
   ngOnInit(): void {
     this.taskForm = this.parentForm;
-    this.subTasks.valueChanges.subscribe(() => console.log(this.subTasks.value));
 
     if (this.subTasksArray) {
       this.listSubTasks(this.subTasksArray);
     }
   }
 
-  listSubTasks(subTasksArray: string[]): void {
+  listSubTasks(subTasksArray: object[]): void {
     const subTasksJSON = JSON.stringify(subTasksArray);
     const subTasks = JSON.parse(subTasksJSON);
 

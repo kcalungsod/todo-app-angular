@@ -7,5 +7,5 @@ export interface TaskEntry {
     isCompleted: boolean,
     dateCompleted?: Date,
     priorityTag?: string,
-    subTasks?: string[]
+    subTasks?: object[]
 }
