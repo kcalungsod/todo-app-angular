@@ -28,9 +28,28 @@
         <mat-card id="taskCard">
             <mat-card-title>{{task.name}}</mat-card-title>
             <div id="taskDescriptionContainer">
-                <mat-card-content>{{task.description }}</mat-card-content>
+                <mat-card-content>{{task.description}}</mat-card-content>
             </div>
             <div id="matChipsContainer">
+                <mat-card-content *ngIf="task.subTasks && task.subTasks.length > 0">
+                    <mat-expansion-panel [expanded]="true" (opened)="panelOpenState = true"
+                        (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>Subtasks</mat-panel-title>
+                            <mat-panel-description>
+                                {{panelOpenState === true ? "Hide subtasks": "Show subtasks"}}
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <div *ngFor="let subtask of task.subTasks">
+                            <mat-checkbox (change)="toggleCheckBox($event, task, subtask.subTask)"
+                                [checked]="subtask.done === true ? 'true' : 'false'">
+                                <span [style.text-decoration]="subtask.done === true ? 'line-through' : 'none'">
+                                    {{subtask.subTask}}
+                                </span>
+                            </mat-checkbox>
+                        </div>
+                    </mat-expansion-panel>
+                </mat-card-content>
                 <mat-card-content>
                     <mat-chip-list>
                         <mat-chip color="primary" selected>Active</mat-chip>
@@ -43,7 +62,6 @@
                         <ng-template #withoutDateDue>
                             <mat-chip>No Due Date</mat-chip>
                         </ng-template>
-
                     </mat-chip-list>
                 </mat-card-content>
             </div>

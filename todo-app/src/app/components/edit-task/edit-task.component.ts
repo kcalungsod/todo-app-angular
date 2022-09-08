@@ -29,6 +29,7 @@ export class EditTaskComponent extends TaskControls implements OnInit {
   }
 
   oldTaskID!: string;
+  subTasksReceived!: string[] | undefined;
 
   ngOnInit(): void {
     const selectedTask = this.taskContentService.onTaskReceived();
@@ -42,6 +43,7 @@ export class EditTaskComponent extends TaskControls implements OnInit {
     this.taskDescription.setValue(selectedTask?.description);
     this.withDateDue.setValue(selectedTask?.withDateDue);
     this.dateDue.setValue(oldDateDue);
+    this.subTasksReceived = selectedTask?.subTasks;
   }
 
   async onSubmit(): Promise<void> {
@@ -57,6 +59,8 @@ export class EditTaskComponent extends TaskControls implements OnInit {
     const dueDateChecker: Date = withDateDueChecker && this.dateDue.value ? this.dateDue.value.toLocaleDateString() : null;
     const priorityTagValue: string = this.priorityTag.value === "" ? "No priority tag" : this.priorityTag.value;
 
+    this.subTasks.value.map((subTask: object) => (!subTask.hasOwnProperty('done') ? Object.assign(subTask, { done: false }) : subTask));
+
     return {
       id: this.oldTaskID,
       name: this.taskName.value,
@@ -64,7 +68,8 @@ export class EditTaskComponent extends TaskControls implements OnInit {
       withDateDue: withDateDueChecker,
       dateDue: dueDateChecker,
       isCompleted: false,
-      priorityTag: priorityTagValue
+      priorityTag: priorityTagValue,
+      subTasks: this.subTasks.value
     }
   }
 }

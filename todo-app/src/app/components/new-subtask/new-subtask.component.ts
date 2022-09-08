@@ -1,5 +1,5 @@
 import { Input, Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TaskControls } from 'src/app/models/task-controls.model';
 
 @Component({
@@ -12,6 +12,9 @@ export class NewSubtaskComponent extends TaskControls implements OnInit {
   @Input()
   parentForm!: FormGroup;
 
+  @Input()
+  subTasksArray!: string[] | undefined;
+
   constructor() {
     super();
   }
@@ -19,6 +22,22 @@ export class NewSubtaskComponent extends TaskControls implements OnInit {
   ngOnInit(): void {
     this.taskForm = this.parentForm;
     this.subTasks.valueChanges.subscribe(() => console.log(this.subTasks.value));
+
+    if (this.subTasksArray) {
+      this.listSubTasks(this.subTasksArray);
+    }
+  }
+
+  listSubTasks(subTasksArray: string[]): void {
+    const subTasksJSON = JSON.stringify(subTasksArray);
+    const subTasks = JSON.parse(subTasksJSON);
+
+    for (let x = 0; x < subTasksArray.length; x++) {
+      this.subTasks.push(
+        new FormGroup({
+          subTask: new FormControl(subTasks[x].subTask, [Validators.required, Validators.maxLength(50)])
+        }));
+    }
   }
 
   addSubTask(): void {

@@ -1,5 +1,6 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { PathLocationStrategy } from '@angular/common';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessagesService } from 'src/app/dependencies/messages.service';
 import { TaskContentService } from 'src/app/dependencies/task-content.service';
@@ -16,12 +17,15 @@ export class ActiveTasksComponent implements OnInit {
   activeTasks: TaskEntry[] = [];
   selectedDateFilter: boolean | null = null;
   selectedPriorityTag: string[] = [];
+  panelOpenState: boolean = false;
+  subTaskChecked!: boolean;
 
   constructor(
     private taskApiService: TaskService,
     private taskContentService: TaskContentService,
     private router: Router,
-    private message: MessagesService) { }
+    private message: MessagesService,
+    private changeDetector: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.getActiveTasks();
@@ -53,6 +57,16 @@ export class ActiveTasksComponent implements OnInit {
   getActiveTasks(): void {
     const completionStatus: boolean = false;
     this.taskApiService.getRelevantTasks(completionStatus).subscribe((data) => (this.activeTasks = data));
+  }
+
+  toggleCheckBox(event: any, taskEntry: TaskEntry, subTask: string): void {
+    event.checked ? this.subTaskChecked = true : this.subTaskChecked = false;
+    this.toggleSubTaskValueInDB(this.subTaskChecked, taskEntry, subTask);
+  }
+
+  toggleSubTaskValueInDB(doneStatus: boolean, taskEntry: TaskEntry, subTask: string): void {
+    const dateCompleted: Date = doneStatus ? new Date().toLocaleDateString() as unknown as Date : null as unknown as Date;
+    this.taskApiService.toggleSubTaskCompletion(taskEntry, subTask, doneStatus, dateCompleted).subscribe(() => this.getActiveTasks());
   }
 
   markDone(selectedTask: TaskEntry): void {

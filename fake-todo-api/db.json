@@ -8,6 +8,18 @@
       "dateDue": "9/29/2022",
       "isCompleted": false,
       "priorityTag": "No priority tag",
+      "subTasks": [
+        {
+          "subTask": "soak clothing",
+          "done": false,
+          "dateCompleted": null
+        },
+        {
+          "subTask": "buy detergent",
+          "done": false,
+          "dateCompleted": null
+        }
+      ],
       "dateCompleted": null
     },
     {
@@ -26,8 +38,9 @@
       "description": "Angular",
       "withDateDue": false,
       "dateDue": null,
-      "isCompleted": false,
-      "priorityTag": "Important and urgent"
+      "isCompleted": true,
+      "priorityTag": "No priority tag",
+      "dateCompleted": "9/8/2022"
     },
     {
       "id": "c047be8",
@@ -45,8 +58,9 @@
       "description": "",
       "withDateDue": true,
       "dateDue": "9/7/2022",
-      "isCompleted": false,
-      "priorityTag": "No priority tag"
+      "isCompleted": true,
+      "priorityTag": "No priority tag",
+      "dateCompleted": "9/8/2022"
     },
     {
       "id": "6a4c092",
@@ -67,13 +81,41 @@
       "priorityTag": "Not important or urgent"
     },
     {
-      "id": "d412c74",
-      "name": "Testing subtask",
+      "id": "15095b2",
+      "name": "Testing testing",
       "description": "",
       "withDateDue": false,
       "dateDue": null,
       "isCompleted": false,
-      "priorityTag": "No priority tag"
+      "priorityTag": "No priority tag",
+      "subTasks": [
+        {
+          "subTask": "Testing 1",
+          "done": false,
+          "dateCompleted": null
+        }
+      ]
+    },
+    {
+      "id": "2a90638",
+      "name": "Testing testing",
+      "description": "Test, debug, fix UI",
+      "withDateDue": false,
+      "dateDue": null,
+      "isCompleted": false,
+      "priorityTag": "Important and urgent",
+      "subTasks": [
+        {
+          "subTask": "Test the UI",
+          "done": false,
+          "dateCompleted": null
+        },
+        {
+          "subTask": "Test the backend logic",
+          "done": false,
+          "dateCompleted": null
+        }
+      ]
     }
   ]
 }

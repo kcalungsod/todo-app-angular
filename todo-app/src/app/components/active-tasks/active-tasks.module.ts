@@ -9,6 +9,8 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { EditTaskModule } from '../edit-task/edit-task.module';
 import { PipeModule } from 'src/app/pipes/pipes.module';
@@ -26,7 +28,9 @@ import { PipeModule } from 'src/app/pipes/pipes.module';
     MatChipsModule,
     MatSnackBarModule,
     MatButtonToggleModule,
-    DragDropModule
+    DragDropModule,
+    MatExpansionModule,
+    MatCheckboxModule
   ],
   exports: [ActiveTasksComponent]
 })

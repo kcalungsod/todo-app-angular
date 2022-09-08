@@ -60,6 +60,29 @@ export class TaskService {
       );
   }
 
+  toggleSubTaskCompletion(task: TaskEntry, subTaskValue: string, status: boolean, dateCompletedValue: Date): Observable<TaskEntry> {
+
+    const subTasksJSON = JSON.stringify(task.subTasks);
+    const subTasks = JSON.parse(subTasksJSON);
+
+    if (task.subTasks) {
+      for (let x = 0; x < task.subTasks?.length; x++) {
+        if (subTasks[x].subTask === subTaskValue) {
+          subTasks[x].done = status;
+          subTasks[x].dateCompleted = dateCompletedValue;
+        }
+      }
+    }
+
+    const updatedSubTaskArray = { subTasks: subTasks };
+
+    return this.http.patch<TaskEntry>(`${this.todoApi}/${task.id}`, updatedSubTaskArray, this.httpOptions)
+      .pipe(
+        tap(() => console.log(`Toggled subtask done status to = ${status}`)),
+        catchError(this.handleError<TaskEntry>())
+      );
+  }
+
   editTask(task: TaskEntry): Observable<TaskEntry> {
     return this.http.put<TaskEntry>(`${this.todoApi}/${task.id}`, task, this.httpOptions)
       .pipe(
