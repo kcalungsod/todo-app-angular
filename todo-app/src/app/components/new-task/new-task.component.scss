@@ -8,23 +8,47 @@ mat-card {
     padding: 20px;
 }
 
-#dateContainer {
+.checkboxesContainer {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
-#dateCheckboxContainer {
+.dateContainer {
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+    margin-bottom: 0px;
+}
+
+.dateCheckboxContainer {
     width: 40%;
 }
 
-#dateDueContainer {
+.dateDueContainer {
     width: 50%;
-    position: absolute;
-    left: 50%;
+    margin-bottom: 0px;
 }
 
-#taskTitleContainer>mat-form-field,
-#taskDescriptionContainer>mat-form-field {
+.recurringTaskContainer {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin-bottom: 0px;
+}
+
+.recurringTaskDropDownContainer {
+    margin-right: 50px;
+    margin-bottom: 14px;
+}
+
+.taskTitleContainer>mat-form-field,
+.taskDescriptionContainer>mat-form-field {
     width: 100%;
+}
+
+.matActionsContainer {
+    position: relative;
 }
 
 section {
@@ -32,12 +56,12 @@ section {
     flex-wrap: wrap;
 }
 
-#subTaskContainer {
+.subTaskContainer {
     width: 50%;
 }
 
 @media screen and (max-width: 545px) {
     mat-card {
-        width: 300px;
+        width: 500px;
     }
 }

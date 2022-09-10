@@ -29,6 +29,7 @@ export class NewTaskComponent extends TaskControls implements OnInit {
 
   ngOnInit(): void {
     this.dateDueValidator();
+    this.scheduleValidator();
   }
 
   async onSubmit(): Promise<void> {
@@ -41,20 +42,33 @@ export class NewTaskComponent extends TaskControls implements OnInit {
   }
 
   private createNewTask(): TaskEntry {
-    const withDateDueChecker: boolean = this.withDateDue.value ? true : false;
-    const dueDateChecker: Date = withDateDueChecker && this.dateDue.value ? this.dateDue.value.toLocaleDateString() : null;
-    const priorityTagValue: string = this.priorityTag.value === "" ? "No priority tag" : this.priorityTag.value;
+    let withDateDueValue: boolean = this.withDateDue.value ? true : false;
+    let dueDateValue: Date = withDateDueValue && this.dateDue.value ? this.dateDue.value.toLocaleDateString() : null;
+    let priorityTagValue: string = this.priorityTag.value === "" ? "No priority tag" : this.priorityTag.value;
+    let recurringTaskValue: boolean = this.recurringTask.value ? true : false;
+    let recurringTaskIDValue: string = recurringTaskValue ? this.idService.generateUniqueId() : "";
+    let dateCreated: Date = new Date().toLocaleDateString() as unknown as Date;
+
     this.subTasks.value.map((subTask: object) => (Object.assign(subTask, { done: false })));
+
+    if (recurringTaskValue && !dueDateValue) {
+      withDateDueValue = true;
+      dueDateValue = new Date().toLocaleDateString() as unknown as Date;
+    }
 
     return {
       id: this.idService.generateUniqueId(),
-      name: this.taskName.value,
+      taskName: this.taskName.value,
       description: this.taskDescription.value,
-      withDateDue: withDateDueChecker,
-      dateDue: dueDateChecker,
+      withDateDue: withDateDueValue,
+      dateDue: dueDateValue,
       isCompleted: false,
       priorityTag: priorityTagValue,
-      subTasks: this.subTasks.value
+      subTasks: this.subTasks.value,
+      recurringTask: recurringTaskValue,
+      recurringTaskID: recurringTaskIDValue,
+      schedule: this.schedule.value,
+      dateCreated: dateCreated
     }
   }
 }

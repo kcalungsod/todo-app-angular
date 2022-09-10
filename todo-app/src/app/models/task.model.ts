@@ -1,11 +1,15 @@
 export interface TaskEntry {
     id: string,
-    name: string,
+    taskName: string,
     description?: string,
     withDateDue: boolean,
     dateDue?: Date,
     isCompleted: boolean,
     dateCompleted?: Date,
     priorityTag?: string,
-    subTasks?: object[]
+    subTasks?: object[],
+    recurringTask?: boolean,
+    recurringTaskID: string,
+    schedule?: string,
+    dateCreated: Date
 }

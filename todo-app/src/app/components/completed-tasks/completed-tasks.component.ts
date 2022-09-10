@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MessagesService } from 'src/app/dependencies/messages.service';
+import { RecurringTaskService } from 'src/app/dependencies/recurring-task.service';
 import { TaskService } from 'src/app/dependencies/task.service';
 import { TaskEntry } from 'src/app/models/task.model';
 
@@ -17,6 +18,7 @@ export class CompletedTasksComponent implements OnInit {
 
   constructor(
     private taskApiService: TaskService,
+    private recurringTaskService: RecurringTaskService,
     private message: MessagesService) { }
 
   ngOnInit(): void {
@@ -35,6 +37,10 @@ export class CompletedTasksComponent implements OnInit {
   revertToActive(selectedTask: TaskEntry): void {
     const status: boolean = false;
     const dateCompleted: Date = null as unknown as Date;
+
+    if (selectedTask.recurringTask) {
+      this.recurringTaskService.deleteRecurringTask(selectedTask);
+    }
 
     this.taskApiService.toggleTaskCompletion(selectedTask, status, dateCompleted).subscribe(() => (this.getCompletedTasks()));
     this.message.openSnackBar("Reverted a task back to active!");

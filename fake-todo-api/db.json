@@ -1,104 +1,229 @@
 {
   "todos": [
     {
-      "id": "4fc1edf",
-      "name": "Do Laundry",
-      "description": "Don't forget to separate white from colored clothes.",
-      "withDateDue": true,
-      "dateDue": "9/29/2022",
-      "isCompleted": true,
-      "priorityTag": "No priority tag",
-      "subTasks": [
-        {
-          "subTask": "soak clothing",
-          "done": true,
-          "dateCompleted": "9/8/2022"
-        },
-        {
-          "subTask": "buy detergent",
-          "done": true,
-          "dateCompleted": "9/8/2022"
-        }
-      ],
-      "dateCompleted": "9/8/2022"
-    },
-    {
-      "id": "52ad9c6",
-      "name": "Update laptop",
-      "description": "Don't forget to restart!",
-      "withDateDue": true,
-      "dateDue": "9/16/2022",
-      "isCompleted": false,
-      "priorityTag": "No priority tag",
-      "subTasks": [
-        {
-          "subTask": "Have a laptop",
-          "done": true,
-          "dateCompleted": "9/8/2022"
-        },
-        {
-          "subTask": "Have internet connection",
-          "done": false
-        }
-      ],
-      "dateCompleted": null
-    },
-    {
-      "id": "4118d94",
-      "name": "Create a module",
-      "description": "Angular",
-      "withDateDue": false,
-      "dateDue": null,
-      "isCompleted": true,
-      "priorityTag": "No priority tag",
-      "subTasks": [
-        {
-          "subTask": "Let's try a lengthy subtask ............",
-          "done": false
-        }
-      ],
-      "dateCompleted": "9/8/2022"
-    },
-    {
-      "id": "c047be8",
-      "name": "Revise code",
-      "description": "Refactor!",
-      "withDateDue": true,
-      "dateDue": "9/7/2022",
-      "isCompleted": false,
-      "priorityTag": "No priority tag",
-      "subTasks": []
-    },
-    {
-      "id": "f90c3ca",
-      "name": "Testing wrap",
+      "id": "d3fc663",
+      "taskName": "Do laundry",
       "description": "",
       "withDateDue": true,
-      "dateDue": "9/7/2022",
+      "dateDue": "9/11/2022",
       "isCompleted": true,
-      "priorityTag": "No priority tag",
-      "dateCompleted": "9/8/2022"
-    },
-    {
-      "id": "2a90638",
-      "name": "Testing testing",
-      "description": "Test, debug, fix UI",
-      "withDateDue": false,
-      "dateDue": null,
-      "isCompleted": false,
       "priorityTag": "Important and urgent",
       "subTasks": [
         {
-          "subTask": "Test the UI",
-          "done": false,
-          "dateCompleted": null
+          "subTask": "Buy detergent",
+          "done": true,
+          "dateCompleted": "9/10/2022"
         },
         {
-          "subTask": "Test the backend logic",
-          "done": false,
-          "dateCompleted": null
+          "subTask": "Soak clothing overnight",
+          "done": true,
+          "dateCompleted": "9/10/2022"
         }
-      ]
+      ],
+      "recurringTask": false,
+      "recurringTaskID": "",
+      "schedule": "",
+      "dateCreated": "9/10/2022",
+      "dateCompleted": "9/10/2022"
+    },
+    {
+      "id": "909d37d",
+      "taskName": "Refactor code",
+      "description": "Revise code!",
+      "withDateDue": true,
+      "dateDue": "9/10/2022",
+      "isCompleted": false,
+      "priorityTag": "Important but not urgent",
+      "subTasks": [],
+      "recurringTask": false,
+      "recurringTaskID": "",
+      "schedule": "",
+      "dateCreated": "9/10/2022"
+    },
+    {
+      "id": "c9c6951",
+      "taskName": "Testing wrap",
+      "description": "CSS!",
+      "withDateDue": false,
+      "dateDue": null,
+      "isCompleted": false,
+      "priorityTag": "Urgent but not important",
+      "subTasks": [],
+      "recurringTask": false,
+      "recurringTaskID": "",
+      "schedule": "",
+      "dateCreated": "9/10/2022"
+    },
+    {
+      "id": "adef91e",
+      "taskName": "Testing subtasks",
+      "description": "",
+      "withDateDue": false,
+      "dateDue": null,
+      "isCompleted": true,
+      "priorityTag": "Not important or urgent",
+      "subTasks": [
+        {
+          "subTask": "Complete subtask",
+          "done": true,
+          "dateCompleted": "9/10/2022"
+        },
+        {
+          "subTask": "Incomplete subtask",
+          "done": false
+        }
+      ],
+      "recurringTask": false,
+      "recurringTaskID": "",
+      "schedule": "",
+      "dateCreated": "9/10/2022",
+      "dateCompleted": "9/10/2022"
+    },
+    {
+      "id": "08810ed",
+      "taskName": "No priority task",
+      "description": "",
+      "withDateDue": false,
+      "dateDue": null,
+      "isCompleted": false,
+      "priorityTag": "No priority tag",
+      "subTasks": [],
+      "recurringTask": false,
+      "recurringTaskID": "",
+      "schedule": "",
+      "dateCreated": "9/10/2022"
+    },
+    {
+      "id": "152491d",
+      "taskName": "Recurring Task Daily",
+      "description": "",
+      "withDateDue": true,
+      "dateDue": "9/10/2022",
+      "isCompleted": true,
+      "priorityTag": "No priority tag",
+      "subTasks": [],
+      "recurringTask": true,
+      "recurringTaskID": "f600aaa",
+      "schedule": "Daily",
+      "dateCreated": "9/10/2022",
+      "dateCompleted": "9/10/2022"
+    },
+    {
+      "id": "0e9cede",
+      "taskName": "Recurring Task Weekly",
+      "description": "",
+      "withDateDue": true,
+      "dateDue": "9/10/2022",
+      "isCompleted": false,
+      "priorityTag": "Important and urgent",
+      "subTasks": [],
+      "recurringTask": true,
+      "recurringTaskID": "2eceb99",
+      "schedule": "Weekly",
+      "dateCreated": "9/10/2022",
+      "dateCompleted": null
+    },
+    {
+      "id": "5316570",
+      "taskName": "Recurring Task Daily",
+      "description": "",
+      "withDateDue": true,
+      "dateDue": "9/11/2022",
+      "isCompleted": false,
+      "priorityTag": "No priority tag",
+      "subTasks": [],
+      "recurringTask": true,
+      "recurringTaskID": "f600aaa",
+      "schedule": "Daily",
+      "dateCreated": "9/10/2022",
+      "dateCompleted": null
+    },
+    {
+      "id": "cc1d76d",
+      "taskName": "Recurring Task Monthly",
+      "description": "",
+      "withDateDue": true,
+      "dateDue": "9/10/2022",
+      "isCompleted": true,
+      "priorityTag": "No priority tag",
+      "subTasks": [],
+      "recurringTask": true,
+      "recurringTaskID": "a9dd6a6",
+      "schedule": "Monthly",
+      "dateCreated": "9/10/2022",
+      "dateCompleted": "9/10/2022"
+    },
+    {
+      "id": "3b4e48b",
+      "taskName": "Recurring Task Monthly",
+      "description": "",
+      "withDateDue": true,
+      "dateDue": "10/10/2022",
+      "isCompleted": false,
+      "priorityTag": "No priority tag",
+      "subTasks": [],
+      "recurringTask": true,
+      "recurringTaskID": "a9dd6a6",
+      "schedule": "Monthly",
+      "dateCreated": "9/10/2022"
+    },
+    {
+      "id": "062d388",
+      "taskName": "Recurring Task Yearly",
+      "description": "",
+      "withDateDue": true,
+      "dateDue": "9/10/2022",
+      "isCompleted": true,
+      "priorityTag": "No priority tag",
+      "subTasks": [],
+      "recurringTask": true,
+      "recurringTaskID": "7dac0f1",
+      "schedule": "Yearly",
+      "dateCreated": "9/10/2022",
+      "dateCompleted": "9/10/2022"
+    },
+    {
+      "id": "3eff2e8",
+      "taskName": "Recurring Task Yearly",
+      "description": "",
+      "withDateDue": true,
+      "dateDue": "9/10/2023",
+      "isCompleted": false,
+      "priorityTag": "No priority tag",
+      "subTasks": [],
+      "recurringTask": true,
+      "recurringTaskID": "7dac0f1",
+      "schedule": "Yearly",
+      "dateCreated": "9/10/2022"
+    },
+    {
+      "id": "5cdf726",
+      "taskName": "Recurring Task Monthly 2",
+      "description": "",
+      "withDateDue": true,
+      "dateDue": "12/1/2022",
+      "isCompleted": true,
+      "priorityTag": "No priority tag",
+      "subTasks": [],
+      "recurringTask": true,
+      "recurringTaskID": "e5c2416",
+      "schedule": "Monthly",
+      "dateCreated": "9/10/2022",
+      "dateCompleted": "9/10/2022"
+    },
+    {
+      "id": "0f9b9f6",
+      "taskName": "Recurring Task Monthly 2",
+      "description": "",
+      "withDateDue": true,
+      "dateDue": "1/1/2023",
+      "isCompleted": false,
+      "priorityTag": "No priority tag",
+      "subTasks": [],
+      "recurringTask": true,
+      "recurringTaskID": "e5c2416",
+      "schedule": "Monthly",
+      "dateCreated": "9/10/2022"
     }
   ]
 }

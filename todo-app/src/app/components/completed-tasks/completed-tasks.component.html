@@ -1,7 +1,7 @@
 <section>
     <ng-container *ngFor="let task of completedTasks | filterByPriorityTag: selectedPriorityTag">
         <mat-card id="taskCard">
-            <mat-card-title>{{task.name}}</mat-card-title>
+            <mat-card-title>{{task.taskName}}</mat-card-title>
             <div id="taskDescriptionContainer">
                 <mat-card-content>{{task.description}}</mat-card-content>
             </div>

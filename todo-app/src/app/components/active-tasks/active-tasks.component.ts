@@ -2,6 +2,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessagesService } from 'src/app/dependencies/messages.service';
+import { RecurringTaskService } from 'src/app/dependencies/recurring-task.service';
 import { TaskContentService } from 'src/app/dependencies/task-content.service';
 import { TaskService } from 'src/app/dependencies/task.service';
 import { TaskEntry } from 'src/app/models/task.model';
@@ -22,6 +23,7 @@ export class ActiveTasksComponent implements OnInit {
   constructor(
     private taskApiService: TaskService,
     private taskContentService: TaskContentService,
+    private recurringTaskService: RecurringTaskService,
     private router: Router,
     private message: MessagesService) { }
 
@@ -53,7 +55,13 @@ export class ActiveTasksComponent implements OnInit {
   }
 
   checkIfOverdue(taskDateDue: Date): boolean {
+    if (this.checkIfDueToday(taskDateDue)) { return false; }
     if (new Date(taskDateDue) < (new Date())) { return true; }
+    return false;
+  }
+
+  checkIfDueToday(taskDateDue: Date): boolean {
+    if (new Date(taskDateDue).toLocaleDateString() === (new Date().toLocaleDateString())) { return true; }
     return false;
   }
 
@@ -75,6 +83,10 @@ export class ActiveTasksComponent implements OnInit {
   markDone(selectedTask: TaskEntry): void {
     const status: boolean = true;
     const dateCompleted: Date = new Date().toLocaleDateString() as unknown as Date;
+
+    if (selectedTask.recurringTask) {
+      this.recurringTaskService.createRecurringTask({ ...selectedTask });
+    }
 
     this.taskApiService.toggleTaskCompletion(selectedTask, status, dateCompleted).subscribe(() => (this.getActiveTasks()));
     this.message.openSnackBar("Marked task as complete!");

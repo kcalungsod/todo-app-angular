@@ -46,7 +46,7 @@ export class TaskService {
   addTask(task: TaskEntry): Observable<TaskEntry> {
     return this.http.post<TaskEntry>(this.todoApi, task, this.httpOptions)
       .pipe(
-        tap((newTask: TaskEntry) => console.log(`Added task with id = ${newTask.id}, name = ${newTask.name}`)),
+        tap((newTask: TaskEntry) => console.log(`Added task with id = ${newTask.id}, name = ${newTask.taskName}`)),
         catchError(this.handleError<TaskEntry>())
       );
   }
@@ -85,7 +85,7 @@ export class TaskService {
   editTask(task: TaskEntry): Observable<TaskEntry> {
     return this.http.put<TaskEntry>(`${this.todoApi}/${task.id}`, task, this.httpOptions)
       .pipe(
-        tap((editedTask: TaskEntry) => console.log(`Successfully edited Task: ${editedTask.name}`)),
+        tap((editedTask: TaskEntry) => console.log(`Successfully edited Task: ${editedTask.taskName}`)),
         catchError(this.handleError<TaskEntry>())
       )
   }
@@ -95,6 +95,15 @@ export class TaskService {
       .pipe(
         tap(() => console.log("Deleted task from database.")),
         catchError(this.handleError<TaskEntry>())
+      );
+  }
+
+  getRecurringTaskFromActive(recurringTask: TaskEntry): Observable<TaskEntry[]> {
+    const data = { isCompleted: false, recurringTaskID: recurringTask.recurringTaskID };
+
+    return this.http.get<TaskEntry[]>(this.todoApi, { params: data })
+      .pipe(
+        catchError(this.handleError<TaskEntry[]>())
       );
   }
 

@@ -6,11 +6,13 @@ import { TaskContentService } from 'src/app/dependencies/task-content.service';
 import { TaskControls } from 'src/app/models/task-controls.model';
 import { lastValueFrom } from 'rxjs';
 import { MessagesService } from 'src/app/dependencies/messages.service';
+import { IdGeneratorService } from 'src/app/dependencies/id-generator.service';
 
 
 @Component({
   selector: 'app-edit-task',
   templateUrl: './edit-task.component.html',
+  ///src/app/components/new-task/new-task.component.html
   styleUrls: ['./edit-task.component.scss']
 })
 export class EditTaskComponent extends TaskControls implements OnInit {
@@ -18,6 +20,7 @@ export class EditTaskComponent extends TaskControls implements OnInit {
   constructor(
     private taskApiService: TaskService,
     private taskContentService: TaskContentService,
+    private idService: IdGeneratorService,
     private router: Router,
     private message: MessagesService) {
     super();
@@ -30,20 +33,26 @@ export class EditTaskComponent extends TaskControls implements OnInit {
 
   oldTaskID!: string;
   subTasksReceived!: object[] | undefined;
+  currentRecurringTaskID!: string;
+  dateCreatedValue!: Date;
 
   ngOnInit(): void {
     const selectedTask = this.taskContentService.onTaskReceived();
     const oldDateDue = selectedTask?.dateDue ? new Date(selectedTask?.dateDue as Date) : null;
-    console.log(selectedTask.subTasks);
 
     this.dateDueValidator();
+    this.scheduleValidator();
 
     this.oldTaskID = selectedTask?.id;
-    this.taskName.setValue(selectedTask?.name);
+    this.taskName.setValue(selectedTask?.taskName);
     this.taskDescription.setValue(selectedTask?.description);
     this.withDateDue.setValue(selectedTask?.withDateDue);
     this.dateDue.setValue(oldDateDue);
     this.subTasksReceived = selectedTask?.subTasks;
+    this.recurringTask.setValue(selectedTask?.recurringTask);
+    this.schedule.setValue(selectedTask?.schedule);
+    this.currentRecurringTaskID = selectedTask?.recurringTaskID;
+    this.dateCreatedValue = selectedTask?.dateCreated;
   }
 
   async onSubmit(): Promise<void> {
@@ -55,21 +64,27 @@ export class EditTaskComponent extends TaskControls implements OnInit {
   }
 
   private editActiveTask(): TaskEntry {
-    const withDateDueChecker: boolean = this.withDateDue.value ? true : false;
-    const dueDateChecker: Date = withDateDueChecker && this.dateDue.value ? this.dateDue.value.toLocaleDateString() : null;
-    const priorityTagValue: string = this.priorityTag.value === "" ? "No priority tag" : this.priorityTag.value;
+    let withDateDueValue: boolean = this.withDateDue.value ? true : false;
+    let dueDateValue: Date = withDateDueValue && this.dateDue.value ? this.dateDue.value.toLocaleDateString() : null;
+    let priorityTagValue: string = this.priorityTag.value === "" ? "No priority tag" : this.priorityTag.value;
+    let recurringTaskValue: boolean = this.recurringTask.value ? true : false;
+    let recurringTaskIDValue: string = recurringTaskValue ? this.idService.generateUniqueId() : "";
 
     this.subTasks.value.map((subTask: object) => (!subTask.hasOwnProperty('done') ? Object.assign(subTask, { done: false }) : subTask));
 
     return {
       id: this.oldTaskID,
-      name: this.taskName.value,
+      taskName: this.taskName.value,
       description: this.taskDescription.value,
-      withDateDue: withDateDueChecker,
-      dateDue: dueDateChecker,
+      withDateDue: withDateDueValue,
+      dateDue: dueDateValue,
       isCompleted: false,
       priorityTag: priorityTagValue,
-      subTasks: this.subTasks.value
+      subTasks: this.subTasks.value,
+      recurringTask: recurringTaskValue,
+      recurringTaskID: recurringTaskIDValue,
+      schedule: this.schedule.value,
+      dateCreated: this.dateCreatedValue
     }
   }
 }
