@@ -7,9 +7,16 @@ export interface TaskEntry {
     isCompleted: boolean,
     dateCompleted?: Date,
     priorityTag?: string,
-    subTasks?: object[],
+    subTasks?: subTaskEntry[],
     recurringTask?: boolean,
     recurringTaskID: string,
     schedule?: string,
-    dateCreated: Date
+    dateCreated: Date,
+    nextDueDate?: Date
+}
+
+export interface subTaskEntry {
+    subTask?: string,
+    done?: boolean,
+    dateCompleted?: Date
 }

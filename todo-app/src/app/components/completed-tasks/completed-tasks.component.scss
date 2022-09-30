@@ -1,6 +1,19 @@
+app-completed-tasks {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 section {
     display: flex;
     flex-wrap: wrap;
+}
+
+.wrapper {
+    display: flex;
+}
+
+.recurringTasks {
+    flex: 1 1;
 }
 
 #taskCard {
@@ -35,12 +48,30 @@ mat-card-content {
 
 .subTaskContainer {
     display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
     align-items: center;
 }
 
 .subTaskContainer>div {
     margin: 0 5px 0px 5px;
     padding: 5px;
+}
+
+.subTaskStatusContainer {
+    flex-grow: 1;
+}
+
+.subTaskNameContainer {
+    flex-grow: 3;
+    width: 100%;
+}
+
+.subTaskDateCompletedContainer {
+    flex: 3, 1;
+    width: 100%;
+}
+
+@media screen and (max-width: 545px) {
+    .wrapper {
+        flex-wrap: wrap;
+    }
 }

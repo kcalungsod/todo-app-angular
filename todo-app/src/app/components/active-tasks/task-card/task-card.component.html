@@ -1,0 +1,18 @@
+<mat-card class="taskCard">
+    <mat-card-title>{{task.taskName}}</mat-card-title>
+    <div class="taskDescriptionContainer">
+        <mat-card-content>{{task.description}}</mat-card-content>
+    </div>
+    <mat-card-content *ngIf="task.subTasks && task.subTasks.length > 0">
+        <app-task-card-active-subtasks [subTasks]="task.subTasks" (refreshTaskEvent)="refreshActiveTasks()">
+        </app-task-card-active-subtasks>
+    </mat-card-content>
+    <div class="matChipsContainer">
+        <app-task-card-active-chips [withDateDue]="task.withDateDue" [dateDue]="task.dateDue" [schedule]="task.schedule"
+            [recurringTask]="task.recurringTask" [priorityTag]="task.priorityTag"></app-task-card-active-chips>
+    </div>
+    <div class="matActionsContainer">
+        <app-task-card-active-buttons [task]="task" (refreshTaskEvent)="refreshActiveTasks()">
+        </app-task-card-active-buttons>
+    </div>
+</mat-card>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { TaskEntry } from '../models/task.model';
 
@@ -22,8 +22,10 @@ export class TaskService {
     }
   }
 
-  getRelevantTasks(completionStatus: boolean): Observable<TaskEntry[]> {
+  getRelevantTasks(completionStatus: boolean, recurringTaskValue?: boolean): Observable<TaskEntry[]> {
     let filterTasks = { isCompleted: completionStatus };
+    if (typeof recurringTaskValue !== "undefined") { Object.assign(filterTasks, { recurringTask: recurringTaskValue }); }
+
     return this.http.get<TaskEntry[]>(this.todoApi, { params: filterTasks })
       .pipe(
         tap((taskEntries: TaskEntry[]) => console.log(`Retrieved ${taskEntries.length} where completion status = ${completionStatus}`)),
@@ -32,12 +34,13 @@ export class TaskService {
   }
 
   checkNewTaskId(newId: string): boolean {
-    const data = { id: newId };
-    let isValid = true;
+    const data: { id: string } = { id: newId };
+    let isValid: boolean = true;
 
     this.http.get<TaskEntry[]>(this.todoApi, { params: data })
       .pipe(
-        tap(() => isValid = false)
+        map(() => isValid = false),
+        catchError(this.handleError<TaskEntry[]>())
       );
 
     return isValid;
@@ -60,7 +63,7 @@ export class TaskService {
       );
   }
 
-  toggleSubTaskCompletion(task: TaskEntry, subTaskValue: string, status: boolean, dateCompletedValue: Date): Observable<TaskEntry> {
+  toggleSubTaskCompletion(task: TaskEntry, subTaskValue: string | undefined, status: boolean, dateCompletedValue: Date): Observable<TaskEntry> {
     const subTasksJSON = JSON.stringify(task.subTasks);
     const subTasks = JSON.parse(subTasksJSON);
 
@@ -98,11 +101,12 @@ export class TaskService {
       );
   }
 
-  getRecurringTaskFromActive(recurringTask: TaskEntry): Observable<TaskEntry[]> {
-    const data = { isCompleted: false, recurringTaskID: recurringTask.recurringTaskID };
+  getRecurringTask(recurringTask: TaskEntry, completionStatus: boolean): Observable<TaskEntry[]> {
+    const data = { recurringTaskID: recurringTask.recurringTaskID, isCompleted: completionStatus };
 
     return this.http.get<TaskEntry[]>(this.todoApi, { params: data })
       .pipe(
+        tap(() => console.log("Successfully fetched recurring task")),
         catchError(this.handleError<TaskEntry[]>())
       );
   }

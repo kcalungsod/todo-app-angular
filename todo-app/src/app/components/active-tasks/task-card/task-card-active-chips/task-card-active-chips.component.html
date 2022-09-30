@@ -1,0 +1,26 @@
+<mat-card-content>
+    <mat-chip-list>
+        <mat-chip color="primary" selected>Active</mat-chip>
+        <mat-chip *ngIf="withDateDue && checkIfOverdue(dateDue)" class="overdueChip">Overdue
+        </mat-chip>
+        <mat-chip *ngIf="withDateDue && checkIfDueToday(dateDue)" class="dueTodayChip">
+            Due today!
+        </mat-chip>
+        <mat-chip [ngStyle]="stylePriorityTag(priorityTag)">{{priorityTag}}</mat-chip>
+        <div *ngIf="withDateDue; else withoutDateDue">
+            <mat-chip>With Due Date</mat-chip>
+            <mat-chip color="accent" selected>{{dateDue}}</mat-chip>
+        </div>
+        <ng-template #withoutDateDue>
+            <mat-chip>No Due Date</mat-chip>
+        </ng-template>
+        <div *ngIf="recurringTask">
+            <mat-chip [ngStyle]="styleRecurringTag(schedule)">
+                <mat-chip-avatar>
+                    <mat-icon fontIcon="autorenew" style="color: 'white';"></mat-icon>
+                </mat-chip-avatar>
+                {{schedule}}
+            </mat-chip>
+        </div>
+    </mat-chip-list>
+</mat-card-content>

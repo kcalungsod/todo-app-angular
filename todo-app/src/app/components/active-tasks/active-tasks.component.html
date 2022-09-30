@@ -1,78 +1,8 @@
-<section>
-    <mat-button-toggle-group>
-        <mat-button-toggle (click)="selectedDateFilter = null"
-            [style.font-weight]="selectedDateFilter === null ? 'bold' : 'normal'">All Tasks</mat-button-toggle>
-        <mat-button-toggle (click)="selectedDateFilter = true"
-            [style.font-weight]="selectedDateFilter === true ? 'bold' : 'normal'">With Due Date</mat-button-toggle>
-        <mat-button-toggle (click)="selectedDateFilter = false"
-            [style.font-weight]="selectedDateFilter === false ? 'bold' : 'normal'">No Due Date</mat-button-toggle>
-    </mat-button-toggle-group>
-</section>
+<app-date-filter (selectedDateFilterEvent)="selectDateFilter($event)"></app-date-filter>
+<app-priority-tag-filter (selectedPriorityTagEvent)="selectPriorityTag($event)"></app-priority-tag-filter>
 
-<section>
-    <mat-button-toggle-group multiple>
-        <mat-button-toggle (click)="checkIfTagIsSelected('Important and urgent')">Important and urgent
-        </mat-button-toggle>
-        <mat-button-toggle (click)="checkIfTagIsSelected('Important but not urgent')">Important but not urgent
-        </mat-button-toggle>
-        <mat-button-toggle (click)="checkIfTagIsSelected('Urgent but not important')">Urgent but not important
-        </mat-button-toggle>
-        <mat-button-toggle (click)="checkIfTagIsSelected('Not important or urgent')">Not important or urgent
-        </mat-button-toggle>
-        <mat-button-toggle (click)="checkIfTagIsSelected('No priority tag')">No priority tag</mat-button-toggle>
-    </mat-button-toggle-group>
-</section>
-
-<section id="taskCardSection">
+<section class="taskCardSection">
     <div *ngFor="let task of activeTasks | filterByDate: selectedDateFilter | filterByPriorityTag: selectedPriorityTag">
-        <mat-card id="taskCard">
-            <mat-card-title>{{task.taskName}}</mat-card-title>
-            <div id="taskDescriptionContainer">
-                <mat-card-content>{{task.description}}</mat-card-content>
-            </div>
-            <div id="matChipsContainer">
-                <mat-card-content *ngIf="task.subTasks && task.subTasks.length > 0">
-                    <mat-expansion-panel [expanded]="true">
-                        <mat-expansion-panel-header>
-                            <mat-panel-title>Subtasks</mat-panel-title>
-                            <mat-panel-description>Click to toggle</mat-panel-description>
-                        </mat-expansion-panel-header>
-                        <div *ngFor="let subtask of task.subTasks">
-                            <mat-checkbox (change)="toggleCheckBox($event, task, subtask.subTask)"
-                                [checked]="subtask.done === true ? 'true' : 'false'">
-                                <span [style.text-decoration]="subtask.done === true ? 'line-through' : 'none'">
-                                    {{subtask.subTask}}
-                                </span>
-                            </mat-checkbox>
-                        </div>
-                    </mat-expansion-panel>
-                </mat-card-content>
-                <mat-card-content>
-                    <mat-chip-list>
-                        <mat-chip color="primary" selected>Active</mat-chip>
-                        <mat-chip *ngIf="task.withDateDue && checkIfOverdue(task.dateDue)" class="overdueChip">Overdue
-                        </mat-chip>
-                        <mat-chip *ngIf="task.withDateDue && checkIfDueToday(task.dateDue)" class="dueTodayChip">
-                            Due today!
-                        </mat-chip>
-                        <mat-chip [ngStyle]="stylePriorityTag(task.priorityTag)">{{task.priorityTag}}</mat-chip>
-                        <div *ngIf="task.withDateDue; else withoutDateDue">
-                            <mat-chip>With Due Date</mat-chip>
-                            <mat-chip color="accent" selected>{{task.dateDue}}</mat-chip>
-                        </div>
-                        <ng-template #withoutDateDue>
-                            <mat-chip>No Due Date</mat-chip>
-                        </ng-template>
-                    </mat-chip-list>
-                </mat-card-content>
-            </div>
-            <div id="matActionsContainer">
-                <mat-card-actions>
-                    <button mat-button (click)="markDone(task)">Mark as Done</button>
-                    <button mat-button (click)="goToEdit(task)">Edit</button>
-                    <button mat-button (click)="deleteActiveTask(task)">Delete</button>
-                </mat-card-actions>
-            </div>
-        </mat-card>
+        <app-task-card [task]="task" (refreshTasksEvent)="getActiveTasks()"></app-task-card>
     </div>
 </section>

@@ -1,0 +1,10 @@
+<section>
+    <mat-button-toggle-group>
+        <mat-button-toggle (click)="selectDateFilter('none')"
+            [style.font-weight]="selectedDateFilter === 'none' ? 'bold' : 'normal'">All Tasks</mat-button-toggle>
+        <mat-button-toggle (click)="selectDateFilter('true')"
+            [style.font-weight]="selectedDateFilter === 'true' ? 'bold' : 'normal'">With Due Date</mat-button-toggle>
+        <mat-button-toggle (click)="selectDateFilter('false')"
+            [style.font-weight]=" selectedDateFilter==='false' ? 'bold' : 'normal'">No Due Date</mat-button-toggle>
+    </mat-button-toggle-group>
+</section>

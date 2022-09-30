@@ -1,0 +1,14 @@
+<mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header>
+        <mat-panel-title>Subtasks</mat-panel-title>
+        <mat-panel-description>Click to toggle</mat-panel-description>
+    </mat-expansion-panel-header>
+    <div *ngFor="let subtask of subTasks">
+        <mat-checkbox (change)="toggleCheckBox($event, task, subtask.subTask)"
+            [checked]="subtask.done === true ? 'true' : 'false'">
+            <span [style.text-decoration]="subtask.done === true ? 'line-through' : 'none'">
+                {{subtask.subTask}}
+            </span>
+        </mat-checkbox>
+    </div>
+</mat-expansion-panel>

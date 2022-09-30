@@ -11,7 +11,8 @@ import { TaskEntry } from 'src/app/models/task.model';
 })
 export class CompletedTasksComponent implements OnInit {
 
-  completedTasks: TaskEntry[] = [];
+  completedOneTimeTasks: TaskEntry[] = [];
+  completedRecurringTasks: TaskEntry[] = [];
   panelOpenState: boolean = false;
   selectedDateFilter: boolean | null = null;
   selectedPriorityTag: string[] = [];
@@ -25,13 +26,34 @@ export class CompletedTasksComponent implements OnInit {
     this.getCompletedTasks();
   }
 
-  checkIfTagIsSelected(tag: string): void {
-    this.selectedPriorityTag.includes(tag) ? this.selectedPriorityTag.splice(this.selectedPriorityTag.indexOf(tag), 1) : this.selectedPriorityTag.push(tag);
+  styleRecurringTag(schedule: string | undefined): any {
+    switch (schedule) {
+      case "Daily":
+        return { 'background-color': 'cadetblue', 'color': 'white' };
+      case "Weekly":
+        return { 'background-color': 'indigo', 'color': 'white' };
+      case "Monthly":
+        return { 'background-color': 'coral', 'color': 'white' };
+      case "Yearly":
+        return { 'background-color': 'olivedrab', 'color': 'white' };
+    }
   }
 
   getCompletedTasks(): void {
+    this.getCompletedOneTimeTasks();
+    this.getCompletedRecurringTasks();
+  }
+
+  getCompletedOneTimeTasks(): void {
     const completionStatus: boolean = true;
-    this.taskApiService.getRelevantTasks(completionStatus).subscribe((data) => (this.completedTasks = data));
+    const recurringTaskValue: boolean = false;
+    this.taskApiService.getRelevantTasks(completionStatus, recurringTaskValue).subscribe((data) => (this.completedOneTimeTasks = data));
+  }
+
+  getCompletedRecurringTasks(): void {
+    const completionStatus: boolean = true;
+    const recurringTaskValue: boolean = true;
+    this.taskApiService.getRelevantTasks(completionStatus, recurringTaskValue).subscribe((data) => (this.completedRecurringTasks = data));
   }
 
   revertToActive(selectedTask: TaskEntry): void {
@@ -39,7 +61,7 @@ export class CompletedTasksComponent implements OnInit {
     const dateCompleted: Date = null as unknown as Date;
 
     if (selectedTask.recurringTask) {
-      this.recurringTaskService.deleteRecurringTask(selectedTask);
+      this.recurringTaskService.getAndDeleteRecurringTask(selectedTask, status);
     }
 
     this.taskApiService.toggleTaskCompletion(selectedTask, status, dateCompleted).subscribe(() => (this.getCompletedTasks()));

@@ -12,7 +12,6 @@ import { IdGeneratorService } from 'src/app/dependencies/id-generator.service';
 @Component({
   selector: 'app-edit-task',
   templateUrl: './edit-task.component.html',
-  ///src/app/components/new-task/new-task.component.html
   styleUrls: ['./edit-task.component.scss']
 })
 export class EditTaskComponent extends TaskControls implements OnInit {

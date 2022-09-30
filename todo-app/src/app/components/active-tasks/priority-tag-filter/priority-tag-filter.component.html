@@ -1,0 +1,13 @@
+<section>
+    <mat-button-toggle-group multiple>
+        <mat-button-toggle (click)="checkIfTagIsSelected('Important and urgent')">Important and urgent
+        </mat-button-toggle>
+        <mat-button-toggle (click)="checkIfTagIsSelected('Important but not urgent')">Important but not urgent
+        </mat-button-toggle>
+        <mat-button-toggle (click)="checkIfTagIsSelected('Urgent but not important')">Urgent but not important
+        </mat-button-toggle>
+        <mat-button-toggle (click)="checkIfTagIsSelected('Not important or urgent')">Not important or urgent
+        </mat-button-toggle>
+        <mat-button-toggle (click)="checkIfTagIsSelected('No priority tag')">No priority tag</mat-button-toggle>
+    </mat-button-toggle-group>
+</section>

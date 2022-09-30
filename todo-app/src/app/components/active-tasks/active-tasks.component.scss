@@ -1,44 +1,4 @@
-#taskCard {
-    width: 300px;
-    margin: 20px 20px 10px 10px;
-    padding: 20px;
-}
-
-#taskCardSection {
+.taskCardSection {
     display: flex;
     flex-wrap: wrap;
-}
-
-mat-card-title {
-    line-height: 1.2;
-    height: max-content;
-}
-
-#taskDescriptionContainer {
-    margin: 20px 0 10px 0;
-    height: max-content;
-}
-
-#matChipsContainer {
-    height: max-content;
-    margin: 30px 0 10px 0;
-}
-
-#matActionsContainer {
-    height: 50px;
-    margin: 10px;
-}
-
-mat-card-content {
-    margin-top: 30px;
-}
-
-.overdueChip {
-    background-color: rgb(255, 0, 0);
-    color: white;
-}
-
-.dueTodayChip {
-    background-color: rgb(0, 215, 50);
-    color: white;
 }

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { tap } from 'rxjs';
 import { TaskEntry } from '../models/task.model';
 import { IdGeneratorService } from './id-generator.service';
 import { TaskService } from './task.service';
@@ -11,24 +10,30 @@ export class RecurringTaskService {
 
   constructor(private taskApiService: TaskService, private idService: IdGeneratorService) { }
 
-  createRecurringTask(recurringTask: TaskEntry): void {
+  createRecurringTask(recurringTask: TaskEntry): Date | undefined {
     recurringTask.id = this.idService.generateUniqueId();
     recurringTask.dateDue = this.checkSchedule(recurringTask.dateDue, recurringTask.schedule);
 
     this.taskApiService.addTask(recurringTask).subscribe();
+    return recurringTask.dateDue;
   }
 
-  deleteRecurringTask(recurringTask: TaskEntry): void {
-    let activeRecurringTask!: TaskEntry[];
+  getAndDeleteRecurringTask(recurringTask: TaskEntry, completionStatus: boolean): void {
+    this.taskApiService.getRecurringTask(recurringTask, completionStatus)
+      .subscribe({
+        next: (fetchedRecurringTask: TaskEntry[]) => (
+          this.deleteRecurringTask(fetchedRecurringTask, recurringTask)),
+        error: () => (console.log("An error occured")),
+        complete: () => (console.log("Done!"))
+      });
+  }
 
-    this.taskApiService.getRecurringTaskFromActive(recurringTask)
-      .pipe(
-        tap((activeRecurringTask: TaskEntry[]) =>
-          activeRecurringTask.length > 0 ?
-            this.taskApiService.deleteTask(activeRecurringTask[0]).subscribe() :
-            null
-        )
-      ).subscribe((data: TaskEntry[]) => (activeRecurringTask = data));
+  deleteRecurringTask(fetchedRecurringTask: TaskEntry[], recurringTask: TaskEntry): void {
+    let filteredTasks = fetchedRecurringTask.filter((task: TaskEntry) => task.id != recurringTask.id);
+
+    if (filteredTasks.length > 0) {
+      this.taskApiService.deleteTask(filteredTasks[filteredTasks.length - 1]).subscribe();
+    }
   }
 
   checkSchedule(dateBasis: Date | undefined, schedule: string | undefined): Date | any {

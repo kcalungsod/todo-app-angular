@@ -1,50 +1,106 @@
-<section>
-    <ng-container *ngFor="let task of completedTasks | filterByPriorityTag: selectedPriorityTag">
-        <mat-card id="taskCard">
-            <mat-card-title>{{task.taskName}}</mat-card-title>
-            <div id="taskDescriptionContainer">
-                <mat-card-content>{{task.description}}</mat-card-content>
-            </div>
-            <div id="matChipsContainer">
-                <mat-card-content *ngIf="task.subTasks && task.subTasks.length > 0">
-                    <mat-expansion-panel [expanded]="true">
-                        <mat-expansion-panel-header>
-                            <mat-panel-title>Subtasks</mat-panel-title>
-                            <mat-panel-description>Click to toggle</mat-panel-description>
-                        </mat-expansion-panel-header>
-                        <div *ngFor="let subtask of task.subTasks" class="subTaskContainer">
-                            <div>
-                                <mat-icon fontIcon="check" *ngIf="subtask.done === true ; else notDone"></mat-icon>
-                                <ng-template #notDone>
-                                    <mat-icon fontIcon="close" #notDone></mat-icon>
-                                </ng-template>
+<div class="wrapper">
+    <section class="oneTimeTasks">
+        <ng-container *ngFor="let task of completedOneTimeTasks">
+            <mat-card id="taskCard">
+                <mat-card-title>{{task.taskName}}</mat-card-title>
+                <div id="taskDescriptionContainer">
+                    <mat-card-content>{{task.description}}</mat-card-content>
+                </div>
+                <div id="matChipsContainer">
+                    <mat-card-content *ngIf="task.subTasks && task.subTasks.length > 0">
+                        <mat-expansion-panel [expanded]="true">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>Subtasks</mat-panel-title>
+                                <mat-panel-description>Click to toggle</mat-panel-description>
+                            </mat-expansion-panel-header>
+                            <div *ngFor="let subtask of task.subTasks" class="subTaskContainer">
+                                <div class="subTaskStatusContainer">
+                                    <mat-icon fontIcon="check" *ngIf="subtask.done === true ; else notDone"></mat-icon>
+                                    <ng-template #notDone>
+                                        <mat-icon fontIcon="close" #notDone></mat-icon>
+                                    </ng-template>
+                                </div>
+                                <div class="subTaskNameContainer">
+                                    {{subtask.subTask}}
+                                </div>
+                                <div class="subTaskDateCompletedContainer" *ngIf="subtask.done">
+                                    {{subtask.dateCompleted}}
+                                </div>
+                                <div *ngIf="!subtask.done" class="subTaskDateCompletedContainer" #noDueDate>
+                                    Incomplete
+                                </div>
                             </div>
-                            <div>
-                                {{subtask.subTask}}
+                        </mat-expansion-panel>
+                    </mat-card-content>
+                    <mat-card-content>
+                        <mat-chip-list>
+                            <mat-chip color="primary" selected>Completed</mat-chip>
+                            <mat-chip *ngIf="task.withDateDue">Due Date: {{task.dateDue}}</mat-chip>
+                            <mat-chip color="accent" selected>Marked Done: {{task.dateCompleted}}</mat-chip>
+                        </mat-chip-list>
+                    </mat-card-content>
+                </div>
+                <div id="matActionsContainer">
+                    <mat-card-actions>
+                        <button mat-button (click)="revertToActive(task)">Revert to Active Tasks</button>
+                        <button mat-button (click)="deleteCompletedTask(task)">Delete</button>
+                    </mat-card-actions>
+                </div>
+            </mat-card>
+        </ng-container>
+    </section>
+
+    <section class="recurringTasks">
+        <ng-container *ngFor="let task of completedRecurringTasks">
+            <mat-card id="taskCard">
+                <mat-card-title>{{task.taskName}}</mat-card-title>
+                <div id="taskDescriptionContainer">
+                    <mat-card-content>{{task.description}}</mat-card-content>
+                </div>
+                <div id="matChipsContainer">
+                    <mat-card-content *ngIf="task.subTasks && task.subTasks.length > 0">
+                        <mat-expansion-panel [expanded]="true">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>Subtasks</mat-panel-title>
+                                <mat-panel-description>Click to toggle</mat-panel-description>
+                            </mat-expansion-panel-header>
+                            <div *ngFor="let subtask of task.subTasks" class="subTaskContainer">
+                                <div class="subTaskStatusContainer">
+                                    <mat-icon fontIcon="check" *ngIf="subtask.done === true ; else notDone"></mat-icon>
+                                    <ng-template #notDone>
+                                        <mat-icon fontIcon="close" #notDone></mat-icon>
+                                    </ng-template>
+                                </div>
+                                <div class="subTaskNameContainer">
+                                    {{subtask.subTask}}
+                                </div>
+                                <div class="subTaskDateCompletedContainer" *ngIf="subtask.done">
+                                    {{subtask.dateCompleted}}
+                                </div>
+                                <div *ngIf="!subtask.done" class="subTaskDateCompletedContainer" #noDueDate>
+                                    Incomplete
+                                </div>
                             </div>
-                            <div *ngIf="subtask.done=== true; else noDueDate">
-                                {{subtask.dateCompleted}}
-                            </div>
-                            <ng-template #noDueDate>
-                                Incomplete
-                            </ng-template>
-                        </div>
-                    </mat-expansion-panel>
-                </mat-card-content>
-                <mat-card-content>
-                    <mat-chip-list>
-                        <mat-chip color="primary" selected>Completed</mat-chip>
-                        <mat-chip *ngIf="task.withDateDue">Due Date: {{task.dateDue}}</mat-chip>
-                        <mat-chip color="accent" selected>Marked Done: {{task.dateCompleted}}</mat-chip>
-                    </mat-chip-list>
-                </mat-card-content>
-            </div>
-            <div id="matActionsContainer">
-                <mat-card-actions>
-                    <button mat-button (click)="revertToActive(task)">Revert to Active Tasks</button>
-                    <button mat-button (click)="deleteCompletedTask(task)">Delete</button>
-                </mat-card-actions>
-            </div>
-        </mat-card>
-    </ng-container>
-</section>
+                        </mat-expansion-panel>
+                    </mat-card-content>
+                    <mat-card-content>
+                        <mat-chip-list>
+                            <mat-chip [ngStyle]="styleRecurringTag(task.schedule)"> {{task.schedule}} task!
+                            </mat-chip>
+                            <mat-chip color="accent" selected>Marked Done On: {{task.dateCompleted}}</mat-chip>
+                            <mat-chip color="primary" selected>Last Due Date: {{task.dateDue}}</mat-chip>
+                            <mat-chip [ngStyle]="styleRecurringTag(task.schedule)">Next Due Date: {{task.nextDueDate}}
+                            </mat-chip>
+                        </mat-chip-list>
+                    </mat-card-content>
+                </div>
+                <div id="matActionsContainer">
+                    <mat-card-actions>
+                        <button mat-button (click)="revertToActive(task)">Undo</button>
+                        <button mat-button (click)="deleteCompletedTask(task)">Delete</button>
+                    </mat-card-actions>
+                </div>
+            </mat-card>
+        </ng-container>
+    </section>
+</div>

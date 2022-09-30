@@ -15,7 +15,7 @@ import { SubTaskErrorMessagePipe } from './subTaskErrorMessage.pipe';
     DateDueErrorMessagePipe,
     TaskDescriptionErrorMessagePipe,
     FilterByPriorityTagPipe,
-    SubTaskErrorMessagePipe
+    SubTaskErrorMessagePipe,
   ],
   imports: [
     CommonModule
