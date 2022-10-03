@@ -1,0 +1,18 @@
+<mat-card-content>
+    <mat-chip-list>
+        <div *ngIf="recurringTask" class="recurringTaskChips">
+            <mat-chip [ngStyle]="styleRecurringTag(schedule)"> {{schedule}} task!
+            </mat-chip>
+            <mat-chip color="accent" selected>Marked Done On: {{dateCompleted}}</mat-chip>
+            <mat-chip color="primary" selected>Last Due Date: {{dateDue}}</mat-chip>
+            <mat-chip [ngStyle]="styleRecurringTag(schedule)">Next Due Date:
+                {{nextDueDate}}
+            </mat-chip>
+        </div>
+        <div *ngIf="!recurringTask">
+            <mat-chip color="primary" selected>Completed</mat-chip>
+            <mat-chip *ngIf="withDateDue">Due Date: {{dateDue}}</mat-chip>
+            <mat-chip color="accent" selected>Marked Done: {{dateCompleted}}</mat-chip>
+        </div>
+    </mat-chip-list>
+</mat-card-content>

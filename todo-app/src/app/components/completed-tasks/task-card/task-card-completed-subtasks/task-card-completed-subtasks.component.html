@@ -1,0 +1,24 @@
+<mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header>
+        <mat-panel-title>Subtasks</mat-panel-title>
+        <mat-panel-description>Click to toggle</mat-panel-description>
+    </mat-expansion-panel-header>
+    <div *ngFor="let subtask of subTasks" class="subTaskContainer">
+        <div class="subTaskStatusContainer">
+            <mat-icon fontIcon="check" *ngIf="subtask.done === true ; else notDone">
+            </mat-icon>
+            <ng-template #notDone>
+                <mat-icon fontIcon="close" #notDone></mat-icon>
+            </ng-template>
+        </div>
+        <div class="subTaskNameContainer">
+            {{subtask.subTask}}
+        </div>
+        <div class="subTaskDateCompletedContainer" *ngIf="subtask.done">
+            {{subtask.dateCompleted}}
+        </div>
+        <div *ngIf="!subtask.done" class="subTaskDateCompletedContainer" #noDueDate>
+            Incomplete
+        </div>
+    </div>
+</mat-expansion-panel>

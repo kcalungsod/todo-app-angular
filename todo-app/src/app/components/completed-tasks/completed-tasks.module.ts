@@ -11,9 +11,13 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatIconModule } from '@angular/material/icon';
 
 import { PipeModule } from 'src/app/pipes/pipes.module';
+import { TaskCardComponent } from './task-card/task-card.component';
+import { TaskCardCompletedSubtasksComponent } from './task-card/task-card-completed-subtasks/task-card-completed-subtasks.component';
+import { TaskCardCompletedButtonsComponent } from './task-card/task-card-completed-buttons/task-card-completed-buttons.component';
+import { TaskCardCompletedChipsComponent } from './task-card/task-card-completed-chips/task-card-completed-chips.component';
 
 @NgModule({
-  declarations: [CompletedTasksComponent],
+  declarations: [CompletedTasksComponent, TaskCardComponent, TaskCardCompletedSubtasksComponent, TaskCardCompletedButtonsComponent, TaskCardCompletedChipsComponent],
   imports: [
     CommonModule,
     MatButtonModule,

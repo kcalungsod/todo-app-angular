@@ -16,60 +16,6 @@ section {
     flex: 1 1;
 }
 
-#taskCard {
-    width: 300px;
-    margin: 20px 20px 10px 10px;
-    padding: 20px;
-    height: max-content;
-}
-
-mat-card-title {
-    line-height: 1.2;
-}
-
-#taskDescriptionContainer {
-    height: max-content;
-    margin: 10px 0 20px 0;
-}
-
-#matChipsContainer {
-    height: max-content;
-    margin: 30px 0 10px 0;
-}
-
-#matActionsContainer {
-    height: max-content;
-    margin: 10px;
-}
-
-mat-card-content {
-    margin-top: 30px;
-}
-
-.subTaskContainer {
-    display: flex;
-    align-items: center;
-}
-
-.subTaskContainer>div {
-    margin: 0 5px 0px 5px;
-    padding: 5px;
-}
-
-.subTaskStatusContainer {
-    flex-grow: 1;
-}
-
-.subTaskNameContainer {
-    flex-grow: 3;
-    width: 100%;
-}
-
-.subTaskDateCompletedContainer {
-    flex: 3, 1;
-    width: 100%;
-}
-
 @media screen and (max-width: 545px) {
     .wrapper {
         flex-wrap: wrap;
